@@ -21,10 +21,12 @@ body {
 }
 .responsive-img {
   block-size: inherit;
-  /* aspect-ratio: 1/1; */
+  border-radius: 10px;
 }
 .main-content {
   position: relative;
+  height: calc(100vh - 500px);
+  border-radius: 10px;
 }
 .hero-text {
   position: absolute;
@@ -111,7 +113,6 @@ body {
   font-weight: 600;
   display: flex;
   gap: 20px;
-  /* width: 100%; */
 }
 .footer-links i {
   opacity: 0.5;
@@ -128,6 +129,9 @@ body {
   }
 }
 @media (max-width: 768px) {
+  .main-content {
+    height: auto;
+  }
   .main-content .main-text {
     font-size: 2rem;
   }
@@ -147,8 +151,5 @@ body {
 @media (max-width: 480px) {
   .main-content .main-text {
     font-size: 1.3rem;
-  }
-  .main-content {
-    /* background-position: -400px 0px; */
   }
 }
