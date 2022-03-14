@@ -1,0 +1,22 @@
+.footer {
+  background-color: var(--black-color);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  color: var(--white-color);
+}
+.footer-links {
+  font-weight: 600;
+  display: flex;
+  gap: 20px;
+  /* width: 100%; */
+}
+.footer-links i {
+  opacity: 0.5;
+  transition: all 0.5s ease-in-out;
+}
+.footer-links i:hover {
+  opacity: 1;
+}
