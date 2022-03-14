@@ -1,13 +1,15 @@
 import React from 'react';
 import '../../Home.css';
+import { heroBackground } from '../../../../assets';
 function Hero() {
   return (
     <>
       <main class="main-content">
-        <p class="main-text">
-          POWER YOUR PROGRESS
-          <button class="btn">Buy Now !!</button>
-        </p>
+        <img className="responsive-img hero-img" src={heroBackground}></img>
+        <div className="hero-text">
+          <p className="hero-title">Power Your Progress</p>
+          <button className="btn hero-btn">Buy Now !</button>
+        </div>
       </main>
     </>
   );

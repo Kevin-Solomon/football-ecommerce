@@ -8,7 +8,7 @@ import Trending from './components/Trending/Trending';
 function Home() {
   return (
     <>
-      <div class="body-center">
+      <div className="body-center">
         <Navbar />
         <Hero />
         <Category />

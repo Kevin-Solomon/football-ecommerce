@@ -3,26 +3,42 @@
 }
 .navbar .btn {
   margin: 0;
+  height: 50px;
+  min-width: 5rem;
   background-color: var(--primary-color);
 }
 .navbar .right-nav {
   display: inline-flex;
   margin: 0;
 }
+.navbar i {
+  font-size: 26px;
+}
 .navbar .navbar-btn {
   display: none;
 }
 @media (max-width: 768px) {
   .navbar .form {
-    display: none;
+    order: 1;
+    width: 100%;
+    margin-top: 10px;
   }
-  .navbar .right-nav {
+  .navbar input {
+    width: 100%;
+  }
+  /* .navbar .right-nav {
     display: none;
   }
   .navbar .navbar-btn {
     display: block;
-  }
+  } */
   .navbar {
     align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar .right-nav > * > * {
+    margin: 5px;
   }
 }

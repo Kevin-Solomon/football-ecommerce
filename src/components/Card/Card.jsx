@@ -1,7 +1,6 @@
 import { realMadrid } from '../../assets';
 import './Card.css';
 export default function Card({ bestSeller }) {
-  console.log(bestSeller);
   return (
     <div className="product-card">
       <div className="card-image-container">

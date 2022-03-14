@@ -8,7 +8,6 @@ function Login() {
     password: '',
     rememberMe: false,
   });
-  console.log(user);
   return (
     <>
       <Navbar />
