@@ -90,3 +90,6 @@
 .line-strike {
   text-decoration: line-through;
 }
+.fa.fa-heart {
+  color: red;
+}
