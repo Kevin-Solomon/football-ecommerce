@@ -8,10 +8,12 @@ import Trending from './components/Trending/Trending';
 function Home() {
   return (
     <>
-      <Navbar />
-      <Hero />
-      <Category />
-      <Trending />
+      <div class="body-center">
+        <Navbar />
+        <Hero />
+        <Category />
+        <Trending />
+      </div>
       <Footer />
     </>
   );
