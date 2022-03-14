@@ -19,7 +19,6 @@ export const products = [
     _id: uuid(),
     title: 'Nike Strike Football',
     price: '3000',
-    inWishlist: false,
     categoryName: 'football',
     inWishlist: false,
     imgSrc: football,
@@ -30,7 +29,6 @@ export const products = [
     price: '5000',
     inWishlist: true,
     categoryName: 'jersey',
-    inWishlist: false,
     imgSrc: manchesterUnited,
   },
 ];

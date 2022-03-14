@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import { useState } from 'react';
 import '../../pages/Login/Login.css';
+import './Signup.css';
 function Singup() {
   const [user, setUser] = useState({
     name: '',
@@ -41,7 +42,7 @@ function Singup() {
               value={user.email}
               onChange={changeHandler}
               className="form-input"
-              type="text"
+              type="email"
             />
             <label htmlFor="password"> Password </label>
             <input
@@ -50,7 +51,7 @@ function Singup() {
               value={user.password}
               onChange={changeHandler}
               className="form-input"
-              type="text"
+              type="password"
             />
 
             <div className="help-container">

@@ -10,17 +10,11 @@ function WishList() {
   useEffect(() => {
     async function getProducts() {
       const response = await axios.get('/api/products');
-      // console.log(response.data.products);
       setData([...response.data.products]);
     }
     getProducts();
   }, []);
-  console.log(
-    data.filter(item => {
-      console.log(item);
-    })
-  );
-  console.log(data.filter(item => item.inWishlist));
+
   return (
     <>
       <Navbar />
