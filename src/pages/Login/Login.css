@@ -38,6 +38,8 @@ p {
 .help-container {
   display: flex;
   padding: 10px 0px;
+  align-items: baseline;
+  gap: 1rem;
 }
 .help-container a {
   margin-left: auto;

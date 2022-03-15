@@ -1,30 +1,34 @@
-import { v4 as uuid } from "uuid";
+import { v4 as uuid } from 'uuid';
 
 /**
  * Product Database can be added here.
  * You can add products of your wish with different attributes
  * */
-
+import { realMadrid, football, manchesterUnited } from './../../assets/index';
 export const products = [
   {
     _id: uuid(),
-    title: "You Can WIN",
-    author: "Shiv Khera",
-    price: "5000",
-    categoryName: "non-fiction",
+    title: 'Real Madrid Jersey',
+    price: '5000',
+    categoryName: 'jersey',
+    inWishlist: true,
+    imgSrc: realMadrid,
+    isBestSeller: true,
   },
   {
     _id: uuid(),
-    title: "You are Winner",
-    author: "Junaid Qureshi",
-    price: "3000",
-    categoryName: "horror",
+    title: 'Nike Strike Football',
+    price: '3000',
+    categoryName: 'football',
+    inWishlist: false,
+    imgSrc: football,
   },
   {
     _id: uuid(),
-    title: "Think and Grow Rich",
-    author: "Shiv Khera",
-    price: "1000",
-    categoryName: "fiction",
+    title: 'Manchecter United Jersey',
+    price: '5000',
+    inWishlist: true,
+    categoryName: 'jersey',
+    imgSrc: manchesterUnited,
   },
 ];

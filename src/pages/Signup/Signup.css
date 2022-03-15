@@ -1,0 +1,12 @@
+.form-input[type='email'],
+.form-input[type='password'] {
+  border: 1px solid var(--lynx-grey);
+  transition: all 0.5s ease;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.form-input:focus {
+  border: 1px solid var(--action-color);
+  outline: none;
+}
