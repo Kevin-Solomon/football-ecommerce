@@ -1,0 +1,35 @@
+.cart-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.cart-summary {
+  border: 1px solid var(--primary-color);
+  padding: 10px;
+  border-radius: 10px;
+  height: min-content;
+  top: 10px;
+  position: sticky;
+}
+.cart-summary .price,
+.cart-summary .discount,
+.cart-summary .delivery,
+.cart-summary .total-amount {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.cart-summary .btn {
+  width: 100%;
+  margin: 0;
+}
+.strike {
+  text-decoration: line-through;
+}
+.cart-card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

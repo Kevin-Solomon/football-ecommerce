@@ -6,7 +6,7 @@ function Product() {
   return (
     <>
       <Navbar />
-      <div class="display-container">
+      <div className="display-container">
         <Filter />
         <ProductListing />
       </div>
