@@ -1,10 +1,11 @@
 import React from 'react';
+import { manchesterUnited } from '../../assets';
 import './Card.css';
 function LandscapeCard() {
   return (
     <>
       <div className="card-landscape">
-        <img src="../../assets/manchester-united-21-22-third-jersey.jpg" />
+        <img src={manchesterUnited} />
         <div className="card-content">
           <h3>Manchester United</h3>
           <div className="price">
