@@ -8,6 +8,7 @@ import Login from './pages/Login/Login';
 import Home from './pages/Home/Home';
 import Signup from './pages/Signup/Singup';
 import WishList from './pages/WishList/WishList';
+import SingleProductPage from './pages/SingleProductPage/SingleProductPage';
 // Call make Server
 makeServer();
 
@@ -19,6 +20,7 @@ ReactDOM.render(
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/wishlist" element={<WishList />} />
+        <Route path="/product/:productId" element={<SingleProductPage />} />
       </Routes>
     </BrowserRouter>
     {/* <App /> */}

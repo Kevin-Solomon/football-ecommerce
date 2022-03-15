@@ -1,0 +1,93 @@
+/* CSS FOR CONTAINER OF SINGLE PRODUCT  */
+.single-product-container {
+  padding: 10px;
+  margin-bottom: 30px;
+  gap: 1.5rem;
+}
+/* IMAGE WRAPPER CSS  */
+.product-img-container {
+  max-width: 400px;
+  min-width: 300px;
+}
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+/* HIDE THE THE INPUT ELEMENTS  */
+.product-form input {
+  display: none;
+}
+.product-size-select {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.product-form label {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 100px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+/* APPLY STYLE TO ADJACENT LABEL WHEN INPUT IS CHECKED  */
+input[type='radio']:checked + label {
+  border: 1px solid var(--primary-color);
+}
+/* FORM SUBMIT BUTTON CSS  */
+.product-form .btn {
+  margin: 0;
+  width: 100%;
+  border: 1px solid var(--primary-color);
+}
+.product-form .btn:hover {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: 1px solid var(--primary-color);
+}
+.product-detail-content ul li {
+  list-style-position: outside;
+}
+/* CSS FOR PRODUCT DETAIL CONTAINER  */
+.product-detail-header {
+  text-align: center;
+}
+.product-detail-price {
+  text-align: center;
+}
+.product-detail-content > * {
+  margin: 20px;
+}
+.product-detail-content ul > * {
+  margin: 10px;
+}
+/* SINGLE PRODUCT CONTAINER STYLE ENDS HERE  */
+
+/* RECOMMENDED PRODUCT STYLE STARTS HERE  */
+.grid-column-4 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+.grid-column-4 > * {
+  justify-self: center;
+  align-self: center;
+}
+.recommended-products .recommended-products-header {
+  text-align: center;
+}
+
+/* RECOMMENDED PRODUCT STYLE ENDS HERE  */
+
+/* MEDIA QUERY  */
+@media (min-width: 550px) {
+  .single-product-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .product-detail-container {
+    min-width: 470px;
+  }
+}
