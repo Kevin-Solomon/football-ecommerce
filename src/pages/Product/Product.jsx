@@ -9,8 +9,6 @@ function Product() {
       <div class="display-container">
         <Filter />
         <ProductListing />
-        {/* <MobileFilter />
-        <MobileSort /> */}
       </div>
     </>
   );
