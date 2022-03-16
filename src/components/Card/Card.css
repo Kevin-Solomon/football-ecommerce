@@ -10,7 +10,6 @@
   flex-direction: column;
   gap: 10px;
   border-radius: 10px;
-  /* border: 1px solid var(--primary-color); */
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   transition: transform 0.3s ease-in-out;
 }
@@ -54,10 +53,10 @@
 }
 
 .card-landscape {
-  margin: 20px;
   border: 1px solid var(--primary-color);
   background-color: #f3f4f6;
   display: flex;
+
   width: 500px;
   height: 350px;
   border-radius: 10px;
@@ -93,4 +92,22 @@
 }
 .fa.fa-heart {
   color: red;
+}
+.quantity-container {
+  display: flex;
+  gap: 10px;
+}
+.card-landscape .quantity-input {
+  width: 20%;
+}
+.card-landscape .increase-btn,
+.card-landscape .decrease-btn {
+  font-size: 1.8rem;
+  line-height: 0.5rem;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
 }

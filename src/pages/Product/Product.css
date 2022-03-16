@@ -1,0 +1,44 @@
+.display-container {
+  display: flex;
+}
+.display-container .aside {
+  flex-basis: 15%;
+  min-width: 200px;
+}
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: calc(100vh - 150px);
+  position: sticky;
+  top: 0;
+}
+.aside .filter-reset {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+.aside h4,
+.aside div div {
+  margin: 0;
+  padding: 5px 10px;
+}
+.aside div div > * {
+  padding: 5px;
+}
+.display-container .products-display {
+  flex-grow: 1;
+}
+.mobile-filter {
+  display: none;
+}
+.grid-products {
+  background-color: var(--lynx-white);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+}
+@media (max-width: 768px) {
+  .aside {
+    display: none;
+  }
+}

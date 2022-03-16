@@ -27,7 +27,12 @@ function ProductContainer() {
           <form className="product-form" action="">
             <p>Select Size</p>
             <div className="product-size-select">
-              <input name="size" id="size-s" type="radio" />
+              <input
+                className="product-size"
+                name="size"
+                id="size-s"
+                type="radio"
+              />
               <label htmlFor="size-s">US S</label>
               <input name="size" id="size-m" type="radio" />
               <label htmlFor="size-m">US M</label>

@@ -34,7 +34,7 @@
   border-radius: 5px;
 }
 /* APPLY STYLE TO ADJACENT LABEL WHEN INPUT IS CHECKED  */
-input[type='radio']:checked + label {
+input[type='radio']:checked.product-size + label {
   border: 1px solid var(--primary-color);
 }
 /* FORM SUBMIT BUTTON CSS  */
