@@ -4,7 +4,7 @@ import { heroBackground } from '../../../../assets';
 function Hero() {
   return (
     <>
-      <main class="main-content">
+      <main className="main-content">
         <img className="responsive-img hero-img" src={heroBackground}></img>
         <div className="hero-text">
           <p className="hero-title">Power Your Progress</p>

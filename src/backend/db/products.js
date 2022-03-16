@@ -14,6 +14,7 @@ export const products = [
     inWishlist: true,
     imgSrc: realMadrid,
     isBestSeller: true,
+    rating: 4.5,
   },
   {
     _id: uuid(),
@@ -22,6 +23,7 @@ export const products = [
     categoryName: 'football',
     inWishlist: false,
     imgSrc: football,
+    rating: 3.5,
   },
   {
     _id: uuid(),
@@ -30,5 +32,6 @@ export const products = [
     inWishlist: true,
     categoryName: 'jersey',
     imgSrc: manchesterUnited,
+    rating: 2.5,
   },
 ];
