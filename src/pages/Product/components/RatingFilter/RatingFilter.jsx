@@ -10,7 +10,7 @@ function RatingFilter() {
         <h4>Rating</h4>
         <div className="filter-rating-four">
           <input
-            checked={filterState.rating === 4 ? true : false}
+            checked={filterState.rating === 4}
             name="rating"
             id="four-stars"
             type="radio"
@@ -20,7 +20,7 @@ function RatingFilter() {
         </div>
         <div className="filter-rating-three">
           <input
-            checked={filterState.rating === 3 ? true : false}
+            checked={filterState.rating === 3}
             name="rating"
             id="three-stars"
             type="radio"
@@ -30,7 +30,7 @@ function RatingFilter() {
         </div>
         <div className="filter-rating-two">
           <input
-            checked={filterState.rating === 2 ? true : false}
+            checked={filterState.rating === 2}
             name="rating"
             id="two-stars"
             type="radio"
@@ -40,7 +40,7 @@ function RatingFilter() {
         </div>
         <div className="filter-rating-one">
           <input
-            checked={filterState.rating === 1 ? true : false}
+            checked={filterState.rating === 1}
             name="rating"
             id="one-star"
             type="radio"
