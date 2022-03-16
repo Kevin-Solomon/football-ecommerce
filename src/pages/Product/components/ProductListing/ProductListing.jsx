@@ -10,7 +10,6 @@ function ProductListing() {
   const { filterState, filterDispatch } = useFilter();
   const sortedList = getSorted(filterState, products);
   const categoryList = getCategory(filterState, sortedList);
-  console.log(filterState);
   return (
     <>
       <main className="products-display">

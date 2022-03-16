@@ -7,11 +7,9 @@ export function getCategory({ jersey, sneakers, boots, football }, products) {
     football === false &&
     boots === false
   ) {
-    console.log('i last');
     sortedList = [...products];
   }
   if (jersey) {
-    console.log('in jersey');
     sortedList = sortedList.concat(
       products.filter(item => item.categoryName === 'jersey')
     );
