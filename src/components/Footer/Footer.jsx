@@ -3,17 +3,17 @@ import './Footer.css';
 function Footer() {
   return (
     <>
-      <footer class="footer">
+      <footer className="footer">
         Made with code by Kevin Solomon
-        <div class="footer-links">
+        <div className="footer-links">
           <a href="">
-            <i class="fab fa-twitter fa-lg"></i>
+            <i className="fab fa-twitter fa-lg"></i>
           </a>
           <a href="">
-            <i class="fab fa-github fa-lg"></i>
+            <i className="fab fa-github fa-lg"></i>
           </a>
           <a href="">
-            <i class="fab fa-linkedin-in fa-lg"></i>
+            <i className="fab fa-linkedin-in fa-lg"></i>
           </a>
         </div>
         <div>© 2021 KevinSolomon</div>
