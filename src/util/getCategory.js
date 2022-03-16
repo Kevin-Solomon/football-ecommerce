@@ -1,6 +1,5 @@
 export function getCategory({ jersey, sneakers, boots, football }, products) {
   let sortedList = [];
-  console.log((jersey && sneakers && football && boots) === false);
   if (
     jersey === false &&
     sneakers === false &&
