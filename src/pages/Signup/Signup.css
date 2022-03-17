@@ -10,3 +10,8 @@
   border: 1px solid var(--action-color);
   outline: none;
 }
+.btn:disabled {
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.5;
+}

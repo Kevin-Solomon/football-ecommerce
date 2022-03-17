@@ -4,15 +4,24 @@ import './index.css';
 import App from './App';
 import { makeServer } from './server';
 import { ProductProvider } from './context/product/productContext';
+import { AuthProvider } from './context/auth/authContext';
+import { FilterProvider } from './context/filter/filterContext';
+import { BrowserRouter } from 'react-router-dom';
 
 // Call make Server
 makeServer();
 
 ReactDOM.render(
   <React.StrictMode>
-    <ProductProvider>
-      <App />
-    </ProductProvider>
+    <BrowserRouter>
+      <AuthProvider>
+        <ProductProvider>
+          <FilterProvider>
+            <App />
+          </FilterProvider>
+        </ProductProvider>
+      </AuthProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

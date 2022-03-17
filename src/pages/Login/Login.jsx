@@ -2,20 +2,42 @@ import React from 'react';
 import { useState } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import './Login.css';
+import { useAuth } from '../../context/auth/authContext';
+import axios from 'axios';
+import { useNavigate, Link } from 'react-router-dom';
 function Login() {
   const [user, setUser] = useState({
     email: '',
     password: '',
     rememberMe: false,
   });
+  const [hidden, setHidden] = useState(false);
+  const [error, setError] = useState(false);
+  const { setToken } = useAuth();
+  const navigate = useNavigate();
+  async function loginUser(e, { email, password }) {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        '/api/auth/login',
+        JSON.stringify({ email, password })
+      );
+      console.log(response.data.encodedToken);
+      setToken({ token: response.data.encodedToken });
+      navigate('/');
+    } catch (err) {
+      setError(true);
+    }
+  }
+  console.log(error);
   return (
     <>
       <Navbar />
-
+      {error && 'ERROR'}
       <div className="login-container">
         <div className="login-card">
           <h2>Login</h2>
-          <form>
+          <form onSubmit={e => loginUser(e, user)}>
             <label htmlFor="email-input"> Email Address </label>
             <input
               onChange={e =>
@@ -59,7 +81,7 @@ function Login() {
               Login
             </button>
             <p>
-              <a>Create New Account ?</a>
+              <Link to="/signup">Create New Account ?</Link>
             </p>
           </form>
         </div>
