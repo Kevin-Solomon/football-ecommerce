@@ -1,4 +1,4 @@
-export function getRatingList({ rating }, list) {
+export const getRatingList = ({ rating }, list) => {
   let getRatingList = [];
   if (rating === null) {
     getRatingList = list;
@@ -19,4 +19,4 @@ export function getRatingList({ rating }, list) {
     getRatingList = getRatingList.concat(list.filter(item => item.rating > 1));
   }
   return getRatingList;
-}
+};

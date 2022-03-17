@@ -1,4 +1,7 @@
-export function getCategory({ jersey, sneakers, boots, football }, products) {
+export const getCategory = (
+  { jersey, sneakers, boots, football },
+  products
+) => {
   let sortedList = [];
   if (
     jersey === false &&
@@ -30,4 +33,4 @@ export function getCategory({ jersey, sneakers, boots, football }, products) {
   }
 
   return sortedList;
-}
+};

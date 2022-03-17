@@ -4,7 +4,6 @@ import Navbar from '../../components/Navbar/Navbar';
 import './Login.css';
 import { useAuth } from '../../context/auth/authContext';
 import axios from 'axios';
-// import Toast from '../../components/Toast/Toast';
 import { useNavigate, Link } from 'react-router-dom';
 function Login() {
   const [user, setUser] = useState({
