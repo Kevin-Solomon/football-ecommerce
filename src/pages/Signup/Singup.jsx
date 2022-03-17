@@ -3,6 +3,9 @@ import Navbar from '../../components/Navbar/Navbar';
 import { useState } from 'react';
 import '../../pages/Login/Login.css';
 import './Signup.css';
+import axios from 'axios';
+import { useAuth } from './../../context/auth/authContext';
+import { useNavigate, Link } from 'react-router-dom';
 function Singup() {
   const [user, setUser] = useState({
     name: '',
@@ -10,6 +13,8 @@ function Singup() {
     password: '',
     acceptCondition: false,
   });
+  const { setToken } = useAuth();
+  const navigate = useNavigate();
   const changeHandler = e => {
     setUser(prevUser => {
       return {
@@ -18,14 +23,26 @@ function Singup() {
       };
     });
   };
-  console.log(user);
+  const signupHandler = async (e, { email, password }) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('/api/auth/signup', {
+        email,
+        password,
+      });
+      setToken({ token: response.data.encodedToken });
+      navigate('/');
+    } catch (err) {
+      console.error('error', err);
+    }
+  };
   return (
     <>
       <Navbar />
       <div className="login-container">
         <div className="login-card">
           <h2>Sign Up</h2>
-          <form>
+          <form onSubmit={e => signupHandler(e, user)}>
             <label htmlFor="name"> Name </label>
             <input
               id="name"
@@ -71,11 +88,15 @@ function Singup() {
                 I accept all terms and conditions
               </label>
             </div>
-            <button className="btn primary-btn" type="submit">
+            <button
+              className="btn primary-btn"
+              type="submit"
+              disabled={user.acceptCondition ? false : true}
+            >
               Sign Up
             </button>
             <p>
-              <a>Already have an Account ?</a>
+              <Link to="/login">Already have an Account ?</Link>
             </p>
           </form>
         </div>

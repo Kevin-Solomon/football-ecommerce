@@ -1,4 +1,4 @@
-export function getSorted({ sortBy }, products) {
+export const getSorted = ({ sortBy }, products) => {
   let sortedList;
   if (sortBy === 'LOW_TO_HIGH') {
     sortedList = [
@@ -12,4 +12,4 @@ export function getSorted({ sortBy }, products) {
     sortedList = [...products];
   }
   return sortedList;
-}
+};

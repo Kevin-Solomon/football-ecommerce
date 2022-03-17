@@ -6,8 +6,12 @@ const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     async function getProducts() {
-      const response = await axios.get('/api/products');
-      setProducts(response.data.products);
+      try {
+        const response = await axios.get('/api/products');
+        setProducts(response.data.products);
+      } catch (err) {
+        console.err(err);
+      }
     }
     getProducts();
   }, []);

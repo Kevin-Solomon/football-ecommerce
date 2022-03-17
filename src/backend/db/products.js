@@ -75,7 +75,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: 'Liverpool Home Jersey',
+    title: 'Liverpool Away Jersey',
     price: '3000',
     inWishlist: true,
     categoryName: 'jersey',
@@ -92,15 +92,6 @@ export const products = [
     rating: 4.5,
   },
 
-  {
-    _id: uuid(),
-    title: 'PSG Away Jersey',
-    price: '3000',
-    inWishlist: true,
-    categoryName: 'jersey',
-    imgSrc: liverpoolJersey,
-    rating: 2.5,
-  },
   {
     _id: uuid(),
     title: 'PSG Away Jersey',
@@ -130,7 +121,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: 'Nike Air Temp',
+    title: 'Nike Air Tempo',
     price: '10000',
     inWishlist: true,
     categoryName: 'sneakers',

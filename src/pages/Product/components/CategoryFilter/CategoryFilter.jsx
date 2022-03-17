@@ -24,7 +24,7 @@ function CategoryFilter() {
             type="checkbox"
             onChange={() => filterDispatch({ type: 'boots' })}
           />
-          <label htmlFor="women-clothing">Boots</label>
+          <label htmlFor="boots">Boots</label>
         </div>
         <div className="filter-category-sneaker">
           <input
