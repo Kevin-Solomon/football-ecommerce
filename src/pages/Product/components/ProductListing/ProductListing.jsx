@@ -6,9 +6,9 @@ import { getRatingList, getSorted, getCategory } from '../../../../util';
 function ProductListing() {
   const products = useProducts();
   const { filterState } = useFilter();
-  const sortedList = getSorted(filterState, products);
-  const categoryList = getCategory(filterState, sortedList);
-  const ratingList = getRatingList(filterState, categoryList);
+  const categoryList = getCategory(filterState, products);
+  const sortedList = getSorted(filterState, categoryList);
+  const ratingList = getRatingList(filterState, sortedList);
   return (
     <>
       <main className="products-display">
