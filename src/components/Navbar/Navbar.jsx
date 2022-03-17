@@ -1,7 +1,10 @@
 import React from 'react';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/auth/authContext';
 function Navbar() {
+  const { token } = useAuth();
+  // console.log(token);
   return (
     <>
       <nav className="navbar">
@@ -20,9 +23,15 @@ function Navbar() {
         </form>
 
         <div className="right-nav">
-          <Link to="/login">
-            <button className="btn primary-btn">Login</button>
-          </Link>
+          {token.token === null ? (
+            <Link to="/login">
+              <button className="btn primary-btn">Login</button>
+            </Link>
+          ) : (
+            <Link to="/login">
+              <button className="btn primary-btn">Logout</button>
+            </Link>
+          )}
 
           <ul>
             <li>

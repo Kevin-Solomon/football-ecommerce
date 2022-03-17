@@ -8,6 +8,7 @@ import WishList from './pages/WishList/WishList';
 import SingleProductPage from './pages/SingleProductPage/SingleProductPage';
 import Product from './pages/Product/Product';
 import Cart from './pages/Cart/Cart';
+import Mockman from 'mockman-js';
 function App() {
   return (
     <div className="App">
@@ -20,6 +21,7 @@ function App() {
           <Route path="/product/:productId" element={<SingleProductPage />} />
           <Route path="/product" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/mockman" element={<Mockman />} />
         </Routes>
       </BrowserRouter>
     </div>
