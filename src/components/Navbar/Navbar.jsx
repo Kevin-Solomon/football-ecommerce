@@ -3,7 +3,7 @@ import './Navbar.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/auth/authContext';
 function Navbar() {
-  const { token } = useAuth();
+  const { token, setToken } = useAuth();
   // console.log(token);
   return (
     <>
@@ -29,7 +29,12 @@ function Navbar() {
             </Link>
           ) : (
             <Link to="/login">
-              <button className="btn primary-btn">Logout</button>
+              <button
+                className="btn primary-btn"
+                onClick={() => setToken({ token: null })}
+              >
+                Logout
+              </button>
             </Link>
           )}
 
