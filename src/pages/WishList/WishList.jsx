@@ -28,7 +28,7 @@ function WishList() {
                 price={item.price}
                 imgSrc={item.imgSrc}
                 name={item.name}
-                id={item.id}
+                _id={item._id}
                 inWishlist
               />
             ))}

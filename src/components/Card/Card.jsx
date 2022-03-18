@@ -3,6 +3,7 @@ import './Card.css';
 import { useWishlist } from '../../context/wishlist/wishlistContext';
 import { useAuth } from '../../context/auth/authContext';
 export default function Card({
+  _id,
   id,
   name,
   price,
@@ -12,6 +13,7 @@ export default function Card({
 }) {
   const { addToWishlist, deleteFromWishlist } = useWishlist();
   const { token } = useAuth();
+  console.log(_id);
   return (
     <div className="product-card">
       <div className="card-image-container">
@@ -19,8 +21,7 @@ export default function Card({
         {inWishlist ? (
           <i
             onClick={() => {
-              console.log(id);
-              deleteFromWishlist(id);
+              deleteFromWishlist(_id);
             }}
             className="fa fa-heart"
             aria-hidden="true"
@@ -28,7 +29,7 @@ export default function Card({
         ) : (
           <i
             onClick={() => {
-              addToWishlist({ id, name, price, imgSrc }, token.token);
+              addToWishlist({ _id, name, price, imgSrc }, token.token);
             }}
             className="far fa-heart fa-lg"
           ></i>
