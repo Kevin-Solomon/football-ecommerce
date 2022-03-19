@@ -2,9 +2,10 @@ import React from 'react';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/auth/authContext';
+import { useWishlist } from './../../context/wishlist/wishlistContext';
 function Navbar() {
   const { token, setToken } = useAuth();
-  // console.log(token);
+  const { wishlistState } = useWishlist();
   return (
     <>
       <nav className="navbar">
@@ -41,8 +42,10 @@ function Navbar() {
           <ul>
             <li>
               <div className="badge">
-                <i className="fas fa-heart fa-2x"></i>
-                <div className="badge-number">1</div>
+                <Link to="/wishlist">
+                  <i className="fas fa-heart fa-2x"></i>
+                  <div className="badge-number">{wishlistState.length}</div>
+                </Link>
               </div>
             </li>
             <li>

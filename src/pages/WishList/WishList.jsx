@@ -5,28 +5,22 @@ import './WishList.css';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { getByTitle } from '@testing-library/react';
+import { useWishlist } from '../../context/wishlist/wishlistContext';
 function WishList() {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    async function getProducts() {
-      const response = await axios.get('/api/products');
-      setData([...response.data.products]);
-    }
-    getProducts();
-  }, []);
-
+  const { wishlistState } = useWishlist();
   return (
     <>
       <Navbar />
       <div className="body-center">
         <div className="grid-wishlist">
-          {data
-            .filter(item => item.inWishlist)
-            .map(item => (
+          {wishlistState &&
+            wishlistState.map(item => (
               <Card
+                key={item._id}
                 price={item.price}
                 imgSrc={item.imgSrc}
-                name={item.title}
+                name={item.name}
+                _id={item._id}
                 inWishlist
               />
             ))}
