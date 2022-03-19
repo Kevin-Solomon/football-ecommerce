@@ -34,15 +34,19 @@ const WishlistProvider = ({ children }) => {
       if (checkItem(wishlistState, product)) {
         return console.error('Item Already exist in wishlist');
       } else {
-        const response = await axios.post(
-          '/api/user/wishlist',
-          { product },
-          { headers: { authorization: token } }
-        );
-        wishlistDispatch({
-          type: 'ADD_TO_CART',
-          payload: response.data.wishlist,
-        });
+        try {
+          const response = await axios.post(
+            '/api/user/wishlist',
+            { product },
+            { headers: { authorization: token } }
+          );
+          wishlistDispatch({
+            type: 'ADD_TO_CART',
+            payload: response.data.wishlist,
+          });
+        } catch (err) {
+          console.error(err);
+        }
       }
     }
   };
@@ -57,10 +61,14 @@ const WishlistProvider = ({ children }) => {
     return flag;
   }
   const deleteFromWishlist = async id => {
-    const response = await axios.delete(`/api/user/wishlist/${id}`, {
-      headers: { authorization: token.token },
-    });
-    wishlistDispatch({ type: 'DELETE', payload: response.data.wishlist });
+    try {
+      const response = await axios.delete(`/api/user/wishlist/${id}`, {
+        headers: { authorization: token.token },
+      });
+      wishlistDispatch({ type: 'DELETE', payload: response.data.wishlist });
+    } catch (err) {
+      console.error(err);
+    }
   };
   return (
     <WishlistContext.Provider
