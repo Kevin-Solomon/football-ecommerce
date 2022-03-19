@@ -9,7 +9,6 @@ const WishlistProvider = ({ children }) => {
     []
   );
   const { token } = useAuth();
-  console.log(token.token);
   useEffect(() => {
     const getWishlistItems = async () => {
       try {
@@ -18,8 +17,7 @@ const WishlistProvider = ({ children }) => {
             authorization: token.token,
           },
         });
-        console.log('response in useeffext of cart context', response);
-        wishListDispatch({
+        wishlistDispatch({
           type: 'INITIALIZE',
           payload: response.data.wishlist,
         });
@@ -42,14 +40,17 @@ const WishlistProvider = ({ children }) => {
           { headers: { authorization: token } }
         );
         console.log(response);
-        wishlistDispatch({ type: 'ADD_TO_CART', payload: product });
+        wishlistDispatch({
+          type: 'ADD_TO_CART',
+          payload: response.data.wishlist,
+        });
       }
     }
   };
   function checkItem(state, itemToCheck) {
     let flag = false;
     state.forEach(item => {
-      if (item.id === itemToCheck.id) {
+      if (item._id === itemToCheck._id) {
         console.log('sike4');
         flag = true;
       }
@@ -61,7 +62,7 @@ const WishlistProvider = ({ children }) => {
     const response = await axios.delete(`/api/user/wishlist/${id}`, {
       headers: { authorization: token.token },
     });
-    console.log(response);
+    wishlistDispatch({ type: 'DELETE', payload: response.data.wishlist });
   };
   return (
     <WishlistContext.Provider
