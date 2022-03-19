@@ -54,7 +54,6 @@ const WishlistProvider = ({ children }) => {
     let flag = false;
     state.forEach(item => {
       if (item._id === itemToCheck._id) {
-        console.log('sike4');
         flag = true;
       }
     });
