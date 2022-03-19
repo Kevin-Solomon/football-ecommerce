@@ -13,7 +13,6 @@ export default function Card({
 }) {
   const { addToWishlist, deleteFromWishlist } = useWishlist();
   const { token } = useAuth();
-  console.log(_id);
   return (
     <div className="product-card">
       <div className="card-image-container">

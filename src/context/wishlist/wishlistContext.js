@@ -39,7 +39,6 @@ const WishlistProvider = ({ children }) => {
           { product },
           { headers: { authorization: token } }
         );
-        console.log(response);
         wishlistDispatch({
           type: 'ADD_TO_CART',
           payload: response.data.wishlist,
@@ -58,7 +57,6 @@ const WishlistProvider = ({ children }) => {
     return flag;
   }
   const deleteFromWishlist = async id => {
-    console.log(id);
     const response = await axios.delete(`/api/user/wishlist/${id}`, {
       headers: { authorization: token.token },
     });

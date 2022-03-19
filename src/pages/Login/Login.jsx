@@ -22,14 +22,12 @@ function Login() {
         '/api/auth/login',
         JSON.stringify({ email, password })
       );
-      console.log(response.data.encodedToken);
       setToken({ token: response.data.encodedToken });
       navigate('/');
     } catch (err) {
       setError(true);
     }
   }
-  console.log(error);
   return (
     <>
       <Navbar />

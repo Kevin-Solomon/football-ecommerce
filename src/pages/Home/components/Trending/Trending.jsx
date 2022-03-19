@@ -5,7 +5,6 @@ import { manchesterUnited, realMadrid } from '../../../../assets';
 import { useProducts } from '../../../../context/product/productContext';
 function Trending() {
   const products = useProducts();
-  console.log(products);
   return (
     <>
       <h2 className="text-center">Trending</h2>

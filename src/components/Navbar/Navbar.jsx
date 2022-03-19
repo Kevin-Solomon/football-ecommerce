@@ -6,7 +6,6 @@ import { useWishlist } from './../../context/wishlist/wishlistContext';
 function Navbar() {
   const { token, setToken } = useAuth();
   const { wishlistState } = useWishlist();
-  console.log(wishlistState);
   return (
     <>
       <nav className="navbar">
