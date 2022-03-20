@@ -3,11 +3,7 @@ import { manchesterUnited } from '../../assets';
 import { useCart } from '../../context/cart/cartContext';
 import './Card.css';
 function LandscapeCard({ _id, price, name, qty, imgSrc }) {
-  const [quantity, setQuantity] = useState(0);
-  const { removeFromCart } = useCart();
-  // useEffect(() => {
-  //   setQuantity(qty);
-  // }, []);
+  const { removeFromCart, decreaseQuantity, increaseQuantity } = useCart();
   return (
     <>
       <div className="card-landscape">
@@ -19,9 +15,19 @@ function LandscapeCard({ _id, price, name, qty, imgSrc }) {
           </div>
 
           <div className="quantity-container">
-            <button className="increase-btn">+</button>
+            <button
+              className="increase-btn"
+              onClick={() => increaseQuantity(_id)}
+            >
+              +
+            </button>
             <input value={qty} className="quantity-input" type="number" />
-            <button className="decrease-btn">-</button>
+            <button
+              className="decrease-btn"
+              onClick={() => decreaseQuantity(_id, qty)}
+            >
+              -
+            </button>
           </div>
           <button
             className="btn outline-primary"

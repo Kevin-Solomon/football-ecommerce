@@ -8,6 +8,7 @@ function CartProvider({ children }) {
   const [cartState, cartDispatch] = useReducer(cartReducer, initialCartState);
   useEffect(() => {
     async function getCartItems() {
+      console.log(token.token);
       try {
         const response = await axios.get('/api/user/cart', {
           headers: { authorization: token.token },
@@ -17,6 +18,7 @@ function CartProvider({ children }) {
         console.error(err);
       }
     }
+    getCartItems();
   });
   const addToCart = async (product, _id) => {
     try {
@@ -56,9 +58,15 @@ function CartProvider({ children }) {
     }
   };
   const removeFromCart = async _id => {
-    const flag =
-      cartState.cart.find(item => item.qty > 1) === undefined ? false : true;
-    if (flag) {
+    const response = await axios.delete(`/api/user/cart/${_id}`, {
+      headers: { authorization: token.token },
+    });
+    cartDispatch({ type: 'DELETE_ITEM', payload: response.data.cart });
+  };
+  const decreaseQuantity = async (_id, qty) => {
+    if (qty === 1) {
+      removeFromCart(_id);
+    } else {
       const response = await axios.post(
         `/api/user/cart/${_id}`,
         { action: { type: 'decrement' } },
@@ -66,17 +74,27 @@ function CartProvider({ children }) {
           headers: { authorization: token.token },
         }
       );
-      cartDispatch({ type: 'DELETE_EXTRA_ITEM', payload: response.data.cart });
-    } else {
-      const response = await axios.delete(`/api/user/cart/${_id}`, {
-        headers: { authorization: token.token },
-      });
-      cartDispatch({ type: 'DELETE_ITEM', payload: response.data.cart });
+      cartDispatch({ type: 'DECREASE_QUANTITY', payload: response.data.cart });
     }
+  };
+  const increaseQuantity = async _id => {
+    const response = await axios.post(
+      `/api/user/cart/${_id}`,
+      { action: { type: 'increment' } },
+      { headers: { authorization: token.token } }
+    );
+    cartDispatch({ type: 'INCREASE_QUANTITY', payload: response.data.cart });
   };
   return (
     <CartContext.Provider
-      value={{ cartState, cartDispatch, addToCart, removeFromCart }}
+      value={{
+        cartState,
+        cartDispatch,
+        addToCart,
+        removeFromCart,
+        decreaseQuantity,
+        increaseQuantity,
+      }}
     >
       {children}
     </CartContext.Provider>
