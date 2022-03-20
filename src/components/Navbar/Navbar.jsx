@@ -14,7 +14,7 @@ function Navbar() {
       <nav className="navbar">
         <div className="logo">
           <h2>
-            <a href="/">FootballHQ</a>
+            <Link to="/">FootballHQ</Link>
           </h2>
         </div>
 
