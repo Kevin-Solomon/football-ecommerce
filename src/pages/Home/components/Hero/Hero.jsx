@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../Home.css';
 import { heroBackground } from '../../../../assets';
+import { Link } from 'react-router-dom';
 function Hero() {
   return (
     <>
