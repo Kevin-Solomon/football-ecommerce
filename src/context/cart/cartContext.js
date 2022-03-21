@@ -20,10 +20,11 @@ function CartProvider({ children }) {
     }
     getCartItems();
   });
+  //ADD TO CART FUUNCTION
   const addToCart = async (product, _id) => {
+    console.log(_id);
     try {
       console.log(product);
-      console.log(token.token);
       const flag =
         cartState.cart.find(item => item._id === _id) === undefined
           ? false
@@ -57,12 +58,14 @@ function CartProvider({ children }) {
       console.error(err);
     }
   };
+  //REMOVE FROM CART FUNCTION
   const removeFromCart = async _id => {
     const response = await axios.delete(`/api/user/cart/${_id}`, {
       headers: { authorization: token.token },
     });
     cartDispatch({ type: 'DELETE_ITEM', payload: response.data.cart });
   };
+  //DECREASE ITEM FUNCTION
   const decreaseQuantity = async (_id, qty) => {
     if (qty === 1) {
       removeFromCart(_id);
@@ -77,6 +80,7 @@ function CartProvider({ children }) {
       cartDispatch({ type: 'DECREASE_QUANTITY', payload: response.data.cart });
     }
   };
+  //INCREASE ITEM FUNCTION
   const increaseQuantity = async _id => {
     const response = await axios.post(
       `/api/user/cart/${_id}`,
