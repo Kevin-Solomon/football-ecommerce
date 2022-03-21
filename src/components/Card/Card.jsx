@@ -1,4 +1,4 @@
-import { realMadrid } from '../../assets';
+import { Link } from 'react-router-dom';
 import './Card.css';
 import { useWishlist } from '../../context/wishlist/wishlistContext';
 import { useAuth } from '../../context/auth/authContext';
@@ -11,6 +11,8 @@ export default function Card({
   imgSrc,
   isBestSeller,
   inWishlist,
+  inCart,
+  rating,
 }) {
   const { addToWishlist, deleteFromWishlist } = useWishlist();
   const { token } = useAuth();
@@ -32,18 +34,36 @@ export default function Card({
             onClick={() => {
               addToWishlist({ _id, name, price, imgSrc }, token.token);
             }}
-            className="far fa-heart fa-lg"
+            className="far fa-heart"
           ></i>
         )}
       </div>
       <h4>{name}</h4>
       <h4>₹ {price}</h4>
-      <button
-        className="btn"
-        onClick={() => addToCart({ _id, name, price, imgSrc }, _id)}
-      >
-        Add to cart
-      </button>
+      <div className="card-rating">
+        <div className="read-only-rating">
+          <span className="small-text">{rating}</span>
+          <i className="far fa-star"></i>
+        </div>
+      </div>
+      <div className="card-footer-btn">
+        {inCart ? (
+          <Link to="/cart">
+            <button className="btn outline-primary">Go to Cart</button>
+          </Link>
+        ) : (
+          <button
+            className="btn"
+            onClick={() => addToCart({ _id, name, price, imgSrc }, _id)}
+          >
+            Add to cart
+          </button>
+        )}
+        <Link to={'/product/' + _id}>
+          <button className="btn outline-primary">View Item</button>
+        </Link>
+      </div>
+
       {isBestSeller ? (
         <span className="small-text product-card-badge">Best Seller</span>
       ) : null}

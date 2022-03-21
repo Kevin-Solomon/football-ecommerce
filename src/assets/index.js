@@ -19,6 +19,7 @@ import psgJersey from './psg-away-jersey.webp';
 import pumaOne from './puma-one.jpg';
 import bayernJersey from './bayern-jersey.webp';
 import manchesterUnitedAway from './manchester-united-away.webp';
+import noItemFound from './noitemfound.jpg';
 export {
   heroBackground,
   realMadrid,
@@ -41,4 +42,5 @@ export {
   nikeVapormax,
   manchesterUnitedAway,
   bayernJersey,
+  noItemFound,
 };

@@ -3,16 +3,21 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import '../../SingleProductPage.css';
 import axios from 'axios';
-import { realMadrid } from '../../../../assets';
+
 function ProductContainer() {
   const params = useParams();
   const [data, setData] = useState({ imgSrc: '', title: '', price: '' });
   useEffect(() => {
     async function getProducts() {
-      const response = await axios.get('/api/products');
-      setData(
-        response.data.products.find(item => item.id === params.productId)
-      );
+      try {
+        const response = await axios.get('/api/products');
+        console.log(response.data.products);
+        setData(
+          response.data.products.find(item => item._id === params.productId)
+        );
+      } catch (err) {
+        console.log(err);
+      }
     }
     getProducts();
   }, []);
@@ -34,9 +39,19 @@ function ProductContainer() {
                 type="radio"
               />
               <label htmlFor="size-s">US S</label>
-              <input name="size" id="size-m" type="radio" />
+              <input
+                className="product-size"
+                name="size"
+                id="size-m"
+                type="radio"
+              />
               <label htmlFor="size-m">US M</label>
-              <input name="size" id="size-lg" type="radio" />
+              <input
+                className="product-size"
+                name="size"
+                id="size-lg"
+                type="radio"
+              />
               <label htmlFor="size-lg">US L</label>
             </div>
             <button className="btn outline-primary">Add to Cart</button>

@@ -5,9 +5,9 @@
   gap: 20px;
 }
 .cart-summary {
-  border: 1px solid var(--primary-color);
+  border: 1px solid var(--grey-color);
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   height: min-content;
   top: 10px;
   position: sticky;

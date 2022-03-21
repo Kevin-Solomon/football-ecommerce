@@ -14,7 +14,7 @@ function CartProvider({ children }) {
           headers: { authorization: token.token },
         });
       } catch (err) {
-        console.error(err);
+        console.error('No cart Items present', err);
       }
     }
     getCartItems();
