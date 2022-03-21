@@ -13,7 +13,6 @@ function CartProvider({ children }) {
         const response = await axios.get('/api/user/cart', {
           headers: { authorization: token.token },
         });
-        console.log(response);
       } catch (err) {
         console.error(err);
       }
@@ -52,7 +51,6 @@ function CartProvider({ children }) {
           }
         );
         cartDispatch({ type: 'ADD_TO_CART', payload: response.data.cart });
-        console.log(response);
       }
     } catch (err) {
       console.error(err);
