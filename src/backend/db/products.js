@@ -69,7 +69,7 @@ export const products = [
     title: 'Barcelona Home Jersey',
     price: '4500',
     inWishlist: true,
-    categoryName: 'boots',
+    categoryName: 'jersey',
     imgSrc: barcaJersey,
     rating: 3.9,
   },

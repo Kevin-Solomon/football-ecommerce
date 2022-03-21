@@ -21,7 +21,7 @@ function ProductContainer() {
     }
     getProducts();
   }, []);
-
+  console.log(data);
   return (
     <>
       <section className="single-product-container">
@@ -38,27 +38,54 @@ function ProductContainer() {
                 id="size-s"
                 type="radio"
               />
-              <label htmlFor="size-s">US S</label>
+              <label htmlFor="size-s">
+                {data.categoryName === 'boots' ||
+                data.categoryName === 'sneakers'
+                  ? 'Size 7'
+                  : 'US S'}
+              </label>
               <input
                 className="product-size"
                 name="size"
                 id="size-m"
                 type="radio"
               />
-              <label htmlFor="size-m">US M</label>
+              <label htmlFor="size-m">
+                {data.categoryName === 'boots' ||
+                data.categoryName === 'sneakers'
+                  ? 'Size 8'
+                  : 'US M'}
+              </label>
               <input
                 className="product-size"
                 name="size"
                 id="size-lg"
                 type="radio"
               />
-              <label htmlFor="size-lg">US L</label>
+              <label htmlFor="size-lg">
+                {data.categoryName === 'boots' ||
+                data.categoryName === 'sneakers'
+                  ? 'Size 9'
+                  : 'US L'}
+              </label>
+              <input
+                className="product-size"
+                name="size"
+                id="size-xlg"
+                type="radio"
+              />
+              <label htmlFor="size-xlg">
+                {data.categoryName === 'boots' ||
+                data.categoryName === 'sneakers'
+                  ? 'Size 10'
+                  : 'US XL'}
+              </label>
             </div>
             <button className="btn outline-primary">Add to Cart</button>
           </form>
           <div className="product-detail-content">
             <h2 className="product-detail-header">{data.title}</h2>
-            <p className="product-detail-price">₹ {data.price}</p>
+            <h3 className="product-detail-price">₹ {data.price}</h3>
             <ul>
               <li>Everyday midweight cotton feels soft and comfortable.</li>
               <li>100% cotton</li>

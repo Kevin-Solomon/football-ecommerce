@@ -8,6 +8,7 @@ const DELETE_EXTRA_ITEM = 'DELETE_EXTRA_ITEM';
 const DECREASE_QUANTITY = 'DECREASE_QUANTITY';
 const INCREASE_QUANTITY = 'INCREASE_QUANTITY';
 const RESET = 'RESET';
+const INITIALIZE = 'INITIALIZE';
 function cartReducer(state, action) {
   console.log(action.type);
   switch (action.type) {
@@ -25,6 +26,8 @@ function cartReducer(state, action) {
       return { ...state, cart: [...action.payload] };
     case RESET:
       return { ...state, cart: [] };
+    case INITIALIZE:
+      return { ...state, cart: [...action.payload] };
     default:
       return { ...state };
   }

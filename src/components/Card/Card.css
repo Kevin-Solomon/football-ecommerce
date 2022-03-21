@@ -88,8 +88,8 @@
 }
 .card-content .btn {
   margin: 0;
-  background-color: #2563eb;
-  color: white;
+  /* background-color: #2563eb;
+  color: white; */
 }
 .line-strike {
   text-decoration: line-through;
@@ -128,4 +128,10 @@
 
 .card-footer-btn > * {
   flex-basis: 50%;
+}
+.outline-primary {
+  border: 1px solid var(--primary-color);
+}
+.icon-btn {
+  background-color: aqua;
 }

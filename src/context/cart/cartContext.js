@@ -13,14 +13,15 @@ function CartProvider({ children }) {
         const response = await axios.get('/api/user/cart', {
           headers: { authorization: token.token },
         });
+        cartDispatch({ type: 'INITIALIZE', payload: response.data.cart });
       } catch (err) {
         console.error('No cart Items present', err);
       }
     }
     getCartItems();
-  });
+  }, [token.token]);
   //ADD TO CART FUUNCTION
-  const addToCart = async (product, _id) => {
+  const addToCart = async (product, _id, setDisabled) => {
     console.log(_id);
     try {
       console.log(product);
@@ -50,9 +51,11 @@ function CartProvider({ children }) {
             headers: { authorization: token.token },
           }
         );
+        setDisabled(false);
         cartDispatch({ type: 'ADD_TO_CART', payload: response.data.cart });
       }
     } catch (err) {
+      setDisabled(false);
       console.error(err);
     }
   };

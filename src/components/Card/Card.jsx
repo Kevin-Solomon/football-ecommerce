@@ -3,6 +3,7 @@ import './Card.css';
 import { useWishlist } from '../../context/wishlist/wishlistContext';
 import { useAuth } from '../../context/auth/authContext';
 import { useCart } from './../../context/cart/cartContext';
+import { useState } from 'react';
 export default function Card({
   _id,
   id,
@@ -17,6 +18,7 @@ export default function Card({
   const { addToWishlist, deleteFromWishlist } = useWishlist();
   const { token } = useAuth();
   const { addToCart } = useCart();
+  const [disabled, setDisabled] = useState(false);
   return (
     <div className="product-card">
       <div className="card-image-container">
@@ -53,8 +55,12 @@ export default function Card({
           </Link>
         ) : (
           <button
+            disabled={disabled}
             className="btn"
-            onClick={() => addToCart({ _id, name, price, imgSrc }, _id)}
+            onClick={() => {
+              setDisabled(true);
+              addToCart({ _id, name, price, imgSrc }, _id, setDisabled);
+            }}
           >
             Add to cart
           </button>
