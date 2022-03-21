@@ -3,15 +3,18 @@ import './Navbar.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/auth/authContext';
 import { useWishlist } from './../../context/wishlist/wishlistContext';
+import { useCart } from './../../context/cart/cartContext';
 function Navbar() {
   const { token, setToken } = useAuth();
   const { wishlistState } = useWishlist();
+  const { cartState } = useCart();
+  console.log(cartState);
   return (
     <>
       <nav className="navbar">
         <div className="logo">
           <h2>
-            <a href="/">FootballHQ</a>
+            <Link to="/">FootballHQ</Link>
           </h2>
         </div>
 
@@ -49,10 +52,12 @@ function Navbar() {
               </div>
             </li>
             <li>
-              <div className="badge">
-                <i className="fas fa-shopping-cart fa-2x"></i>
-                <div className="badge-number">1</div>
-              </div>
+              <Link to="/cart">
+                <div className="badge">
+                  <i className="fas fa-shopping-cart fa-2x"></i>
+                  <div className="badge-number">{cartState.cart.length}</div>
+                </div>
+              </Link>
             </li>
           </ul>
         </div>

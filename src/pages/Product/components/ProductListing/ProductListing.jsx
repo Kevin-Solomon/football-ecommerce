@@ -21,6 +21,7 @@ function ProductListing() {
                 price={item.price}
                 name={item.title}
                 imgSrc={item.imgSrc}
+                _id={item._id}
               />
             );
           })}

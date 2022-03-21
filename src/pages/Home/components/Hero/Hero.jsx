@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../Home.css';
 import { heroBackground } from '../../../../assets';
+import { Link } from 'react-router-dom';
 function Hero() {
   return (
     <>
@@ -8,7 +9,9 @@ function Hero() {
         <img className="responsive-img hero-img" src={heroBackground}></img>
         <div className="hero-text">
           <p className="hero-title">Power Your Progress</p>
-          <button className="btn hero-btn">Buy Now !</button>
+          <button className="btn hero-btn">
+            <Link to="/product">Buy Now !</Link>
+          </button>
         </div>
       </main>
     </>
