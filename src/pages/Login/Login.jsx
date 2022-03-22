@@ -30,7 +30,7 @@ function Login() {
   }
   return (
     <>
-      <Navbar />
+      <Navbar inLogin />
       {error && 'ERROR'}
       <div className="login-container">
         <div className="login-card">
@@ -77,6 +77,17 @@ function Login() {
             </div>
             <button className="btn primary-btn" type="submit">
               Login
+            </button>
+            <button
+              className="btn primary-btn"
+              onClick={e => {
+                setUser({
+                  email: 'adarshbalika@gmail.com',
+                  password: 'adarshBalika123',
+                });
+              }}
+            >
+              Login With Test Credentials
             </button>
             <p>
               <Link to="/signup">Create New Account ?</Link>

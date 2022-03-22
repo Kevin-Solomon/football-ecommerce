@@ -1,8 +1,9 @@
-import { realMadrid } from '../../assets';
+import { Link } from 'react-router-dom';
 import './Card.css';
 import { useWishlist } from '../../context/wishlist/wishlistContext';
 import { useAuth } from '../../context/auth/authContext';
 import { useCart } from './../../context/cart/cartContext';
+import { useState } from 'react';
 export default function Card({
   _id,
   id,
@@ -11,39 +12,73 @@ export default function Card({
   imgSrc,
   isBestSeller,
   inWishlist,
+  inCart,
+  rating,
 }) {
   const { addToWishlist, deleteFromWishlist } = useWishlist();
   const { token } = useAuth();
   const { addToCart } = useCart();
+  const [disabled, setDisabled] = useState(false);
   return (
     <div className="product-card">
       <div className="card-image-container">
         <img className="responsive-img" src={imgSrc} alt="pht" />
         {inWishlist ? (
-          <i
+          <button
+            className="icon-btn"
             onClick={() => {
               deleteFromWishlist(_id);
             }}
-            className="fa fa-heart"
-            aria-hidden="true"
-          ></i>
+          >
+            <i className="fa fa-heart" aria-hidden="true"></i>
+          </button>
         ) : (
-          <i
+          <button
+            className="icon-btn"
+            disabled={disabled}
             onClick={() => {
-              addToWishlist({ _id, name, price, imgSrc }, token.token);
+              setDisabled(true);
+              addToWishlist(
+                { _id, name, price, imgSrc, rating },
+                token.token,
+                setDisabled
+              );
             }}
-            className="far fa-heart fa-lg"
-          ></i>
+          >
+            <i className="far fa-heart"></i>
+          </button>
         )}
       </div>
       <h4>{name}</h4>
       <h4>₹ {price}</h4>
-      <button
-        className="btn"
-        onClick={() => addToCart({ _id, name, price, imgSrc }, _id)}
-      >
-        Add to cart
-      </button>
+      <div className="card-rating">
+        <div className="read-only-rating">
+          <span className="small-text">{rating}</span>
+          <i className="far fa-star"></i>
+        </div>
+      </div>
+      <div className="card-footer-btn">
+        {inCart ? (
+          <Link to="/cart">
+            <button className="btn outline-primary">Go to Cart</button>
+          </Link>
+        ) : (
+          <button
+            disabled={disabled}
+            className="btn"
+            onClick={() => {
+              setDisabled(true);
+              addToCart({ _id, name, price, imgSrc, rating }, _id, setDisabled);
+            }}
+          >
+            Add to cart
+          </button>
+        )}
+        <Link to={'/product/' + _id}>
+          <button className="btn outline-primary">View Item</button>
+        </Link>
+      </div>
+
       {isBestSeller ? (
         <span className="small-text product-card-badge">Best Seller</span>
       ) : null}

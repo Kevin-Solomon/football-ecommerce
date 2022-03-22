@@ -27,11 +27,13 @@ const WishlistProvider = ({ children }) => {
     };
     getWishlistItems();
   }, [token.token]);
-  const addToWishlist = async (product, token) => {
+  const addToWishlist = async (product, token, setDisabled) => {
     if (token === null) {
+      setDisabled(false);
       return console.error('No user');
     } else {
       if (checkItem(wishlistState, product)) {
+        setDisabled(false);
         return console.error('Item Already exist in wishlist');
       } else {
         try {
@@ -40,11 +42,13 @@ const WishlistProvider = ({ children }) => {
             { product },
             { headers: { authorization: token } }
           );
+          setDisabled(false);
           wishlistDispatch({
             type: 'ADD_TO_CART',
             payload: response.data.wishlist,
           });
         } catch (err) {
+          setDisabled(false);
           console.error(err);
         }
       }

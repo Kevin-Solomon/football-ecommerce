@@ -1,12 +1,13 @@
 import React from 'react';
 import { useCart } from './../../../../context/cart/cartContext';
 import { getTotalPrice } from './../../../../util';
+import { NoItemFound } from './../../../../components/NoItemFound/NoItemFound';
 function CartSummary() {
   const { cartState } = useCart();
   return (
     <>
       {cartState.cart.length === 0 ? (
-        <>No items</>
+        <NoItemFound component="cart" />
       ) : (
         <div className="cart-summary">
           <h2>Price Details</h2>
