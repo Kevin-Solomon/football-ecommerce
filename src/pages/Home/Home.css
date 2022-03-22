@@ -90,6 +90,7 @@ body {
 .grid-category-card {
   border-radius: 10px;
   cursor: pointer;
+  width: 15rem;
 }
 .grid-category-card img {
   border-radius: 10px;

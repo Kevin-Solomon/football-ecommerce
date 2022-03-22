@@ -34,7 +34,7 @@ export default function Card({
         ) : (
           <i
             onClick={() => {
-              addToWishlist({ _id, name, price, imgSrc }, token.token);
+              addToWishlist({ _id, name, price, imgSrc, rating }, token.token);
             }}
             className="far fa-heart"
           ></i>
@@ -59,7 +59,7 @@ export default function Card({
             className="btn"
             onClick={() => {
               setDisabled(true);
-              addToCart({ _id, name, price, imgSrc }, _id, setDisabled);
+              addToCart({ _id, name, price, imgSrc, rating }, _id, setDisabled);
             }}
           >
             Add to cart

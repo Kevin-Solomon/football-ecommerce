@@ -6,6 +6,7 @@ import { NoItemFound } from '../../components/NoItemFound/NoItemFound';
 import { useWishlist } from '../../context/wishlist/wishlistContext';
 function WishList() {
   const { wishlistState } = useWishlist();
+  console.log(wishlistState);
   return (
     <>
       <Navbar />
@@ -14,13 +15,14 @@ function WishList() {
           {wishlistState.length === 0 ? (
             <NoItemFound component="wishlist" />
           ) : (
-            wishlistState.map(item => (
+            wishlistState.map(({ _id, price, imgSrc, name, rating }) => (
               <Card
-                key={item._id}
-                price={item.price}
-                imgSrc={item.imgSrc}
-                name={item.name}
-                _id={item._id}
+                key={_id}
+                price={price}
+                imgSrc={imgSrc}
+                name={name}
+                _id={_id}
+                rating={rating}
                 inWishlist
               />
             ))
