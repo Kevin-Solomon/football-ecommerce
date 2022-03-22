@@ -6,7 +6,6 @@ import { NoItemFound } from '../../components/NoItemFound/NoItemFound';
 import { useWishlist } from '../../context/wishlist/wishlistContext';
 function WishList() {
   const { wishlistState } = useWishlist();
-  console.log(wishlistState);
   return (
     <>
       <Navbar />
