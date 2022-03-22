@@ -4,6 +4,7 @@ import { useCart } from '../../context/cart/cartContext';
 import './Card.css';
 function LandscapeCard({ _id, price, name, qty, imgSrc }) {
   const { removeFromCart, decreaseQuantity, increaseQuantity } = useCart();
+  const [disabled, setDisabled] = useState(false);
   return (
     <>
       <div className="card-landscape">
@@ -23,8 +24,12 @@ function LandscapeCard({ _id, price, name, qty, imgSrc }) {
             </button>
             <input value={qty} className="quantity-input" type="number" />
             <button
+              disabled={disabled}
               className="decrease-btn"
-              onClick={() => decreaseQuantity(_id, qty)}
+              onClick={() => {
+                setDisabled(true);
+                decreaseQuantity(_id, qty, setDisabled);
+              }}
             >
               -
             </button>

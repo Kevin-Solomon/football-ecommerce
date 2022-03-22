@@ -67,9 +67,10 @@ function CartProvider({ children }) {
     cartDispatch({ type: 'DELETE_ITEM', payload: response.data.cart });
   };
   //DECREASE ITEM FUNCTION
-  const decreaseQuantity = async (_id, qty) => {
+  const decreaseQuantity = async (_id, qty, setDisabled) => {
     if (qty === 1) {
       removeFromCart(_id);
+      setDisabled(false);
     } else {
       const response = await axios.post(
         `/api/user/cart/${_id}`,
@@ -78,6 +79,7 @@ function CartProvider({ children }) {
           headers: { authorization: token.token },
         }
       );
+      setDisabled(false);
       cartDispatch({ type: 'DECREASE_QUANTITY', payload: response.data.cart });
     }
   };
