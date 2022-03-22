@@ -9,7 +9,7 @@ function SortFilter() {
         <h4>Sort</h4>
         <div className="filter-sort-low">
           <input
-            checked={filterState.sortBy === 'LOW_TO_HIGH' ? true : false}
+            defaultChecked={filterState.sortBy === 'LOW_TO_HIGH' ? true : false}
             id="sort-low"
             name="sortType"
             type="radio"
@@ -19,7 +19,7 @@ function SortFilter() {
         </div>
         <div className="filter-sort-high">
           <input
-            checked={filterState.sortBy === 'HIGH_TO_LOW' ? true : false}
+            defaultChecked={filterState.sortBy === 'HIGH_TO_LOW' ? true : false}
             id="sort-high"
             name="sortType"
             type="radio"

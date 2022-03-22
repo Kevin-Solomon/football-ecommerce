@@ -3,14 +3,14 @@ import { useFilter } from '../../../../context/filter/filterContext';
 
 function RatingFilter() {
   const { filterState, filterDispatch } = useFilter();
-
+  console.log(filterState.rating === 3);
   return (
     <>
       <div className="filter-rating">
         <h4>Rating</h4>
         <div className="filter-rating-four">
           <input
-            checked={filterState.rating === 4}
+            defaultChecked={filterState.rating === 4}
             name="rating"
             id="four-stars"
             type="radio"
@@ -20,7 +20,7 @@ function RatingFilter() {
         </div>
         <div className="filter-rating-three">
           <input
-            checked={filterState.rating === 3}
+            defaultChecked={filterState.rating === 3}
             name="rating"
             id="three-stars"
             type="radio"
@@ -30,7 +30,7 @@ function RatingFilter() {
         </div>
         <div className="filter-rating-two">
           <input
-            checked={filterState.rating === 2}
+            defaultChecked={filterState.rating === 2}
             name="rating"
             id="two-stars"
             type="radio"
@@ -40,7 +40,7 @@ function RatingFilter() {
         </div>
         <div className="filter-rating-one">
           <input
-            checked={filterState.rating === 1}
+            defaultChecked={filterState.rating === 1}
             name="rating"
             id="one-star"
             type="radio"
