@@ -24,20 +24,29 @@ export default function Card({
       <div className="card-image-container">
         <img className="responsive-img" src={imgSrc} alt="pht" />
         {inWishlist ? (
-          <i
+          <button
+            className="icon-btn"
             onClick={() => {
               deleteFromWishlist(_id);
             }}
-            className="fa fa-heart"
-            aria-hidden="true"
-          ></i>
+          >
+            <i className="fa fa-heart" aria-hidden="true"></i>
+          </button>
         ) : (
-          <i
+          <button
+            className="icon-btn"
+            disabled={disabled}
             onClick={() => {
-              addToWishlist({ _id, name, price, imgSrc, rating }, token.token);
+              setDisabled(true);
+              addToWishlist(
+                { _id, name, price, imgSrc, rating },
+                token.token,
+                setDisabled
+              );
             }}
-            className="far fa-heart"
-          ></i>
+          >
+            <i className="far fa-heart"></i>
+          </button>
         )}
       </div>
       <h4>{name}</h4>
