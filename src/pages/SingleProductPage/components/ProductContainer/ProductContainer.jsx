@@ -21,7 +21,6 @@ function ProductContainer() {
     }
     getProducts();
   }, []);
-  console.log(data);
   return (
     <>
       <section className="single-product-container">
