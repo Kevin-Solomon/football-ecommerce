@@ -20,6 +20,11 @@ function Product() {
           className="filter-btn"
         >
           Filters
+          {hidden ? (
+            <i class="fas fa-arrow-down"></i>
+          ) : (
+            <i class="fas fa-arrow-up"></i>
+          )}
         </button>
         <div className="display-container">
           <Filter hidden={hidden} />
