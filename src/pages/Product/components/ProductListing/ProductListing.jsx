@@ -2,7 +2,12 @@ import React from 'react';
 import Card from '../../../../components/Card/Card';
 import { useProducts } from '../../../../context/product/productContext';
 import { useFilter } from '../../../../context/filter/filterContext';
-import { getRatingList, getSorted, getCategory } from '../../../../util';
+import {
+  getRatingList,
+  getSorted,
+  getCategory,
+  getRangeProducts,
+} from '../../../../util';
 import { useCart } from '../../../../context/cart/cartContext';
 import { useWishlist } from '../../../../context/wishlist/wishlistContext';
 function ProductListing() {
@@ -13,7 +18,8 @@ function ProductListing() {
   const wishlistId = wishlistState.map(item => item._id);
   const cartId = cartState.cart.map(item => item._id);
   console.log(cartId);
-  const categoryList = getCategory(filterState, products);
+  const rangeList = getRangeProducts(filterState, products);
+  const categoryList = getCategory(filterState, rangeList);
   const sortedList = getSorted(filterState, categoryList);
   const ratingList = getRatingList(filterState, sortedList);
   console.log(ratingList);

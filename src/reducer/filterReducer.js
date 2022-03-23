@@ -1,5 +1,5 @@
 const initialState = {
-  price: 5000,
+  price: 20000,
   sortBy: null,
   jersey: false,
   boots: false,
@@ -15,6 +15,7 @@ const SNEAKERS = 'sneakers';
 const FOOTBALL = 'football';
 const PRICE = 'price';
 const RATING = 'rating';
+const RESET = 'RESET';
 const filterReducer = (state, action) => {
   switch (action.type) {
     case HIGH_TO_LOW:
@@ -33,6 +34,10 @@ const filterReducer = (state, action) => {
       return { ...state, rating: action.payload };
     case LOW_TO_HIGH:
       return { ...state, sortBy: 'LOW_TO_HIGH' };
+    case RESET:
+      return initialState;
+    default:
+      throw new Error('Something wrong occured in filter dispatch');
   }
 };
 

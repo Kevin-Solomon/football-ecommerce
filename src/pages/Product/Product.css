@@ -40,7 +40,10 @@
 .filter-btn {
   display: none;
 }
-
+.filter-price-range {
+  display: flex;
+  flex-direction: column;
+}
 @media (max-width: 768px) {
   .display-container {
     display: block;
