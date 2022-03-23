@@ -6,17 +6,24 @@ import ProductListing from './components/ProductListing/ProductListing';
 import { initialState, filterReducer } from './../../reducer/filterReducer';
 import './Product.css';
 import { FilterProvider, useFilter } from '../../context/filter/filterContext';
-import MobileFilter from './components/MobileFilter/MobileFilter';
+
 function Product() {
-  const [hidden, setHidden] = useState(false);
+  const [hidden, setHidden] = useState(true);
   return (
     <>
       <FilterProvider>
         <Navbar />
+        <button
+          onClick={() => {
+            setHidden(!hidden);
+          }}
+          className="filter-btn"
+        >
+          Filters
+        </button>
         <div className="display-container">
-          <Filter />
+          <Filter hidden={hidden} />
           <ProductListing />
-          <MobileFilter />
         </div>
       </FilterProvider>
     </>

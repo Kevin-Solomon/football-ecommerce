@@ -3,24 +3,28 @@ import { useFilter } from '../../../../context/filter/filterContext';
 
 function RatingFilter() {
   const { filterState, filterDispatch } = useFilter();
-  console.log(filterState.rating === 3);
+  console.log(filterState.rating);
   return (
     <>
       <div className="filter-rating">
         <h4>Rating</h4>
+
         <div className="filter-rating-four">
           <input
-            defaultChecked={filterState.rating === 4}
-            name="rating"
-            id="four-stars"
             type="radio"
-            onChange={() => filterDispatch({ type: 'rating', payload: 4 })}
+            id="four-stars"
+            name="rating"
+            checked={filterState.rating === 4}
+            onChange={e => {
+              filterDispatch({ type: 'rating', payload: 4 });
+            }}
           />
+
           <label htmlFor="four-stars">4 Stars and Above</label>
         </div>
         <div className="filter-rating-three">
           <input
-            defaultChecked={filterState.rating === 3}
+            checked={filterState.rating === 3}
             name="rating"
             id="three-stars"
             type="radio"
@@ -30,7 +34,7 @@ function RatingFilter() {
         </div>
         <div className="filter-rating-two">
           <input
-            defaultChecked={filterState.rating === 2}
+            checked={filterState.rating === 2}
             name="rating"
             id="two-stars"
             type="radio"
@@ -40,7 +44,7 @@ function RatingFilter() {
         </div>
         <div className="filter-rating-one">
           <input
-            defaultChecked={filterState.rating === 1}
+            checked={filterState.rating === 1}
             name="rating"
             id="one-star"
             type="radio"

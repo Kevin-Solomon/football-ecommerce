@@ -4,10 +4,10 @@ import PriceFilter from '../PriceFilter/PriceFilter';
 import RatingFilter from '../RatingFilter/RatingFilter';
 import SortFilter from '../SortFilter/SortFilter';
 
-function Filter({ filterState, filterDispatch }) {
+function Filter({ hidden }) {
   return (
     <>
-      <aside className="aside">
+      <aside className={hidden ? 'aside' : 'aside show'}>
         <div className="filter-reset">
           Filter
           <a>Clear</a>
