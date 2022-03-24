@@ -3,14 +3,17 @@ import CategoryFilter from '../CategoryFilter/CategoryFilter';
 import PriceFilter from '../PriceFilter/PriceFilter';
 import RatingFilter from '../RatingFilter/RatingFilter';
 import SortFilter from '../SortFilter/SortFilter';
-
-function Filter({ filterState, filterDispatch }) {
+import { useFilter } from './../../../../context/filter/filterContext';
+function Filter({ hidden }) {
+  const { filterDispatch } = useFilter();
   return (
     <>
-      <aside className="aside">
+      <aside className={hidden ? 'aside' : 'aside show'}>
         <div className="filter-reset">
           Filter
-          <a>Clear</a>
+          <button onClick={() => filterDispatch({ type: 'RESET' })}>
+            Clear
+          </button>
         </div>
         <PriceFilter />
         <CategoryFilter />
