@@ -8,7 +8,6 @@ function Navbar({ inLogin }) {
   const { token, setToken } = useAuth();
   const { wishlistState, wishlistDispatch } = useWishlist();
   const { cartState, cartDispatch } = useCart();
-  console.log(cartState);
   return (
     <>
       <nav className="navbar">

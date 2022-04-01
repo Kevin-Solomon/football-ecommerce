@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../../Home.css';
-import {
-  football,
-  footballBoots,
-  realMadrid,
-  sneakers,
-} from '../../../../assets';
 import CategoryCard from './components/CategoryCard';
 function Category() {
   const [categories, setCategories] = useState([]);
@@ -14,7 +8,6 @@ function Category() {
   useEffect(() => {
     async function getCategory() {
       const response = await axios({ method: 'GET', url: '/api/categories' });
-      console.log(response);
       setCategories([...response.data.categories]);
     }
     getCategory();
