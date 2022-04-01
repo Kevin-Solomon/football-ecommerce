@@ -3,6 +3,7 @@ import { useFilter } from '../../../../context/filter/filterContext';
 
 function CategoryFilter() {
   const { filterState, filterDispatch } = useFilter();
+  console.log(filterState);
   return (
     <>
       <div className="filter-category">

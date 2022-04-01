@@ -22,7 +22,7 @@ function ProductListing() {
   const categoryList = getCategory(filterState, rangeList);
   const sortedList = getSorted(filterState, categoryList);
   const ratingList = getRatingList(filterState, sortedList);
-  console.log(ratingList);
+  console.log('in listing', filterState);
   return (
     <>
       <main className="products-display">
