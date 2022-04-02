@@ -30,7 +30,11 @@ function Singup() {
         email,
         password,
       });
-      setToken({ token: response.data.encodedToken });
+      console.log(response);
+      setToken({
+        token: response.data.encodedToken,
+        user: response.data.createdUser,
+      });
       navigate('/');
     } catch (err) {
       console.error('error', err);
