@@ -4,9 +4,9 @@ import { useState } from 'react';
 import '../../pages/Login/Login.css';
 import './Signup.css';
 import axios from 'axios';
-import { useAuth } from './../../context/auth/authContext';
+import { useAuth } from '../../context/auth/authContext';
 import { useNavigate, Link } from 'react-router-dom';
-function Singup() {
+function Signup() {
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -109,4 +109,4 @@ function Singup() {
   );
 }
 
-export default Singup;
+export default Signup;
