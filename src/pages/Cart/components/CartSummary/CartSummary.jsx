@@ -26,9 +26,9 @@ function CartSummary() {
     if (!response) return alert('Something went wrong with sdk');
     var options = {
       key_id: 'rzp_test_7EiY4hDu9fMvM7',
-      key: 'rzp_test_7EiY4hDu9fMvM7', // Enter the Key ID generated from the Dashboard
+      key: 'rzp_test_7EiY4hDu9fMvM7',
       key_secret: 'cbxlj9Iw814xs1FDZsh9RWmi',
-      amount: (499 + getTotalPrice(cartState.cart)) * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      amount: (499 + getTotalPrice(cartState.cart)) * 100,
       currency: 'INR',
       name: 'FootballHQ',
       description: 'Purchase',
@@ -40,7 +40,7 @@ function CartSummary() {
         alert(response.razorpay_signature);
       },
       prefill: {
-        name: `${token.user.firstName} ${token.user.lastName}`, //user details will be provided here.
+        name: `${token.user.firstName} ${token.user.lastName}`,
         email: token.user.email,
         contact: '9999999999',
       },
