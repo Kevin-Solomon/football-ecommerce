@@ -20,6 +20,7 @@ import pumaOne from './puma-one.jpg';
 import bayernJersey from './bayern-jersey.webp';
 import manchesterUnitedAway from './manchester-united-away.webp';
 import noItemFound from './noitemfound.jpg';
+import noItem from './noitem.svg';
 export {
   heroBackground,
   realMadrid,
@@ -43,4 +44,5 @@ export {
   manchesterUnitedAway,
   bayernJersey,
   noItemFound,
+  noItem,
 };

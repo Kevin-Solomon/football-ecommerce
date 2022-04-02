@@ -3,16 +3,16 @@ import { useProducts } from '../../context/product/productContext';
 import { useReducer, useState } from 'react';
 import Filter from './components/Filter/Filter';
 import ProductListing from './components/ProductListing/ProductListing';
-import { initialState, filterReducer } from './../../reducer/filterReducer';
 import './Product.css';
 import { FilterProvider, useFilter } from '../../context/filter/filterContext';
 
 function Product() {
   const [hidden, setHidden] = useState(true);
+  const [search, setSearch] = useState('');
   return (
     <>
       <FilterProvider>
-        <Navbar />
+        <Navbar inProductListing value={search} setValue={setSearch} />
         <button
           onClick={() => {
             setHidden(!hidden);
@@ -28,7 +28,7 @@ function Product() {
         </button>
         <div className="display-container">
           <Filter hidden={hidden} />
-          <ProductListing />
+          <ProductListing search={search} />
         </div>
       </FilterProvider>
     </>
