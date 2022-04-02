@@ -4,8 +4,11 @@ import { getTotalPrice } from './../../../../util';
 import { NoItemFound } from './../../../../components/NoItemFound/NoItemFound';
 import Razorpay from 'razorpay';
 import { useAuth } from '../../../../context/auth/authContext';
+import { useOrder } from '../../../../context/order/orderContext';
 function CartSummary() {
   const { token } = useAuth();
+  const { orders, setOrders } = useOrder();
+  const { cartState, cartDispatch } = useCart();
   async function loadSdk() {
     return new Promise(resolve => {
       const script = document.createElement('script');
@@ -36,8 +39,14 @@ function CartSummary() {
 
       handler: function (response) {
         alert(response.razorpay_payment_id);
-        alert(response.razorpay_order_id);
-        alert(response.razorpay_signature);
+        setOrders(prevOrder => [
+          ...prevOrder,
+          {
+            orderId: response.razorpay_payment_id,
+            orderedItems: cartState.cart,
+          },
+        ]);
+        cartDispatch({ type: 'CHECKOUT' });
       },
       prefill: {
         name: `${token.user.firstName} ${token.user.lastName}`,
@@ -52,9 +61,11 @@ function CartSummary() {
     var rzp1 = new window.Razorpay(options);
     rzp1.open();
     e.preventDefault();
+    rzp1.on('payment.failed', function (response) {
+      alert('Something went wrong', response.error.code);
+    });
   }
 
-  const { cartState } = useCart();
   return (
     <>
       {cartState.cart.length === 0 ? (
