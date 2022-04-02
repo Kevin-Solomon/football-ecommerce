@@ -31,7 +31,7 @@ function CartSummary() {
       amount: (499 + getTotalPrice(cartState.cart)) * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
       currency: 'INR',
       name: 'FootballHQ',
-      description: 'Test Transaction',
+      description: 'Purchase',
       image: 'https://example.com/your_logo',
 
       handler: function (response) {
