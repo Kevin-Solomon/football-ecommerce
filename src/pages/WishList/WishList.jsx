@@ -4,11 +4,13 @@ import Card from '../../components/Card/Card';
 import './WishList.css';
 import { NoItemFound } from '../../components/NoItemFound/NoItemFound';
 import { useWishlist } from '../../context/wishlist/wishlistContext';
+import ToastContainer from '../../components/Toast/ToastContainer';
 function WishList() {
   const { wishlistState } = useWishlist();
   return (
     <>
       <Navbar />
+      <ToastContainer />
       <div className="body-center">
         <div className="grid-wishlist">
           {wishlistState.length === 0 ? (

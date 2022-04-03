@@ -4,6 +4,8 @@ import { useWishlist } from '../../context/wishlist/wishlistContext';
 import { useAuth } from '../../context/auth/authContext';
 import { useCart } from './../../context/cart/cartContext';
 import { useState } from 'react';
+import { useToast } from '../../context/toast/toastContext';
+import { v4 as uuid } from 'uuid';
 export default function Card({
   _id,
   id,
@@ -19,6 +21,7 @@ export default function Card({
   const { token } = useAuth();
   const { addToCart } = useCart();
   const [disabled, setDisabled] = useState(false);
+  const { toastDispatch } = useToast();
   return (
     <div className="product-card">
       <div className="card-image-container">
@@ -28,6 +31,14 @@ export default function Card({
             className="icon-btn"
             onClick={() => {
               deleteFromWishlist(_id);
+              toastDispatch({
+                type: 'ADD_TOAST',
+                payload: {
+                  _id: uuid(),
+                  message: `Removed ${name} from the wishlist`,
+                  autoDelete: 3000,
+                },
+              });
             }}
           >
             <i className="fa fa-heart" aria-hidden="true"></i>
@@ -43,6 +54,14 @@ export default function Card({
                 token.token,
                 setDisabled
               );
+              toastDispatch({
+                type: 'ADD_TOAST',
+                payload: {
+                  _id: uuid(),
+                  message: `Add ${name} to the wishlist`,
+                  autoDelete: 3000,
+                },
+              });
             }}
           >
             <i className="far fa-heart"></i>
@@ -69,6 +88,14 @@ export default function Card({
             onClick={() => {
               setDisabled(true);
               addToCart({ _id, name, price, imgSrc, rating }, _id, setDisabled);
+              toastDispatch({
+                type: 'ADD_TOAST',
+                payload: {
+                  _id: uuid(),
+                  message: `Add ${name} to the cart`,
+                  autoDelete: 3000,
+                },
+              });
             }}
           >
             Add to cart

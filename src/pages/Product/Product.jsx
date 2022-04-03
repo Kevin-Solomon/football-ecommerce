@@ -6,6 +6,7 @@ import ProductListing from './components/ProductListing/ProductListing';
 import { initialState, filterReducer } from './../../reducer/filterReducer';
 import './Product.css';
 import { FilterProvider, useFilter } from '../../context/filter/filterContext';
+import ToastContainer from '../../components/Toast/ToastContainer';
 
 function Product() {
   const [hidden, setHidden] = useState(true);
@@ -16,6 +17,7 @@ function Product() {
   return (
     <>
       <Navbar />
+      <ToastContainer />
       <button
         onClick={() => {
           setHidden(!hidden);
