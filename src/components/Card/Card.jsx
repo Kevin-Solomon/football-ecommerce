@@ -30,16 +30,7 @@ export default function Card({
           <button
             className="icon-btn"
             onClick={() => {
-              deleteFromWishlist(_id);
-              toastDispatch({
-                type: 'ADD_TOAST',
-                payload: {
-                  _id: uuid(),
-                  message: `Removed ${name} from the wishlist`,
-                  autoDelete: 3000,
-                  theme: 'danger',
-                },
-              });
+              deleteFromWishlist(_id, name);
             }}
           >
             <i className="fa fa-heart" aria-hidden="true"></i>
@@ -55,14 +46,6 @@ export default function Card({
                 token.token,
                 setDisabled
               );
-              toastDispatch({
-                type: 'ADD_TOAST',
-                payload: {
-                  _id: uuid(),
-                  message: `Add ${name} to the wishlist`,
-                  autoDelete: 3000,
-                },
-              });
             }}
           >
             <i className="far fa-heart"></i>
@@ -89,14 +72,6 @@ export default function Card({
             onClick={() => {
               setDisabled(true);
               addToCart({ _id, name, price, imgSrc, rating }, _id, setDisabled);
-              toastDispatch({
-                type: 'ADD_TOAST',
-                payload: {
-                  _id: uuid(),
-                  message: `Add ${name} to the cart`,
-                  autoDelete: 3000,
-                },
-              });
             }}
           >
             Add to cart

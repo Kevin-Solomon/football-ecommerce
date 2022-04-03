@@ -40,6 +40,7 @@ const WishlistProvider = ({ children }) => {
           _id: uuid(),
           message: `User must be Logged In to access these features !`,
           autoDelete: 3000,
+          theme: 'danger',
         },
       });
       return console.error('No user');
@@ -67,6 +68,14 @@ const WishlistProvider = ({ children }) => {
             type: 'ADD_TO_CART',
             payload: response.data.wishlist,
           });
+          toastDispatch({
+            type: 'ADD_TOAST',
+            payload: {
+              _id: uuid(),
+              message: `${product.name} has been moved to your wishlist`,
+              autoDelete: 3000,
+            },
+          });
         } catch (err) {
           setDisabled(false);
           console.error(err);
@@ -83,12 +92,21 @@ const WishlistProvider = ({ children }) => {
     });
     return flag;
   }
-  const deleteFromWishlist = async id => {
+  const deleteFromWishlist = async (id, name) => {
     try {
       const response = await axios.delete(`/api/user/wishlist/${id}`, {
         headers: { authorization: token.token },
       });
       wishlistDispatch({ type: 'DELETE', payload: response.data.wishlist });
+      toastDispatch({
+        type: 'ADD_TOAST',
+        payload: {
+          _id: uuid(),
+          message: `${name} has been removed from your wishlist`,
+          autoDelete: 3000,
+          theme: 'danger',
+        },
+      });
     } catch (err) {
       console.error(err);
     }

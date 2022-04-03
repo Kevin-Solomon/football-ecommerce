@@ -2,8 +2,11 @@ import React, { createContext, useContext, useReducer, useEffect } from 'react';
 import { useAuth } from '../auth/authContext';
 import { initialCartState, cartReducer } from '../../reducer/cartReducer';
 import axios from 'axios';
+import { useToast } from '../toast/toastContext';
+import { v4 as uuid } from 'uuid';
 const CartContext = createContext({ cart: [] });
 function CartProvider({ children }) {
+  const { toastDispatch } = useToast();
   const { token } = useAuth();
   const [cartState, cartDispatch] = useReducer(cartReducer, initialCartState);
   useEffect(() => {
@@ -19,7 +22,7 @@ function CartProvider({ children }) {
     }
     getCartItems();
   }, [token.token]);
-  //ADD TO CART FUUNCTION
+  //ADD TO CART FUNCTION
   const addToCart = async (product, _id, setDisabled) => {
     console.log(_id);
     try {
@@ -42,6 +45,14 @@ function CartProvider({ children }) {
           }
         );
         cartDispatch({ type: 'ADD_TO_CART', payload: response.data.cart });
+        toastDispatch({
+          type: 'ADD_TOAST',
+          payload: {
+            _id: uuid(),
+            message: `${product.name} has been incremented !`,
+            autoDelete: 3000,
+          },
+        });
       } else {
         const response = await axios.post(
           '/api/user/cart',
@@ -52,23 +63,63 @@ function CartProvider({ children }) {
         );
         setDisabled(false);
         cartDispatch({ type: 'ADD_TO_CART', payload: response.data.cart });
+        toastDispatch({
+          type: 'ADD_TOAST',
+          payload: {
+            _id: uuid(),
+            message: `${product.name} has been moved to your cart !`,
+            autoDelete: 3000,
+          },
+        });
       }
     } catch (err) {
       setDisabled(false);
-      console.error(err);
+      console.error(err.response);
+      if (err.response.status === 500) {
+        toastDispatch({
+          type: 'ADD_TOAST',
+          payload: {
+            _id: uuid(),
+            message: `User must have an account to access these features `,
+            autoDelete: 3000,
+            theme: 'danger',
+          },
+        });
+      }
     }
   };
   //REMOVE FROM CART FUNCTION
-  const removeFromCart = async _id => {
-    const response = await axios.delete(`/api/user/cart/${_id}`, {
-      headers: { authorization: token.token },
-    });
-    cartDispatch({ type: 'DELETE_ITEM', payload: response.data.cart });
+  const removeFromCart = async (_id, name) => {
+    try {
+      const response = await axios.delete(`/api/user/cart/${_id}`, {
+        headers: { authorization: token.token },
+      });
+      cartDispatch({ type: 'DELETE_ITEM', payload: response.data.cart });
+      toastDispatch({
+        type: 'ADD_TOAST',
+        payload: {
+          _id: uuid(),
+          message: `Removed ${name} from cart`,
+          autoDelete: 3000,
+          theme: 'danger',
+        },
+      });
+    } catch (err) {
+      toastDispatch({
+        type: 'ADD_TOAST',
+        payload: {
+          _id: uuid(),
+          message: `Something went wrong`,
+          autoDelete: 3000,
+          theme: 'danger',
+        },
+      });
+    }
   };
   //DECREASE ITEM FUNCTION
-  const decreaseQuantity = async (_id, qty, setDisabled) => {
+  const decreaseQuantity = async (_id, qty, setDisabled, name) => {
     if (qty === 1) {
-      removeFromCart(_id);
+      removeFromCart(_id, name);
       setDisabled(false);
     } else {
       const response = await axios.post(
