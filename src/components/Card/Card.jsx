@@ -37,6 +37,7 @@ export default function Card({
                   _id: uuid(),
                   message: `Removed ${name} from the wishlist`,
                   autoDelete: 3000,
+                  theme: 'danger',
                 },
               });
             }}

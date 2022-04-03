@@ -48,6 +48,7 @@ function LandscapeCard({ _id, price, name, qty, imgSrc }) {
                   _id: uuid(),
                   message: `Removed ${name} from the cart`,
                   autoDelete: 3000,
+                  theme: 'danger',
                 },
               });
             }}
