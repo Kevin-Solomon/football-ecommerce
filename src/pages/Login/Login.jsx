@@ -22,7 +22,11 @@ function Login() {
         '/api/auth/login',
         JSON.stringify({ email, password })
       );
-      setToken({ token: response.data.encodedToken });
+      console.log(response.data);
+      setToken({
+        token: response.data.encodedToken,
+        user: response.data.foundUser,
+      });
       navigate('/');
     } catch (err) {
       setError(true);

@@ -5,7 +5,7 @@ const AuthContext = createContext({ token: null });
 import React from 'react';
 
 function AuthProvider({ children }) {
-  const [token, setToken] = useState({ token: null });
+  const [token, setToken] = useState({ token: null, user: null });
   useEffect(() => {
     localStorage.setItem('token', token);
   }, [token]);

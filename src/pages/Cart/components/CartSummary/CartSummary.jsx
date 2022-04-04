@@ -2,8 +2,70 @@ import React from 'react';
 import { useCart } from './../../../../context/cart/cartContext';
 import { getTotalPrice } from './../../../../util';
 import { NoItemFound } from './../../../../components/NoItemFound/NoItemFound';
+import Razorpay from 'razorpay';
+import { useAuth } from '../../../../context/auth/authContext';
+import { useOrder } from '../../../../context/order/orderContext';
 function CartSummary() {
-  const { cartState } = useCart();
+  const { token } = useAuth();
+  const { orders, setOrders } = useOrder();
+  const { cartState, cartDispatch } = useCart();
+  async function loadSdk() {
+    return new Promise(resolve => {
+      const script = document.createElement('script');
+      script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+      script.onload = () => {
+        console.log('loaded');
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
+    });
+  }
+
+  async function payHandler() {
+    const response = await loadSdk();
+    if (!response) return alert('Something went wrong with sdk');
+    var options = {
+      key_id: 'rzp_test_7EiY4hDu9fMvM7',
+      key: 'rzp_test_7EiY4hDu9fMvM7',
+      key_secret: 'cbxlj9Iw814xs1FDZsh9RWmi',
+      amount: (499 + getTotalPrice(cartState.cart)) * 100,
+      currency: 'INR',
+      name: 'FootballHQ',
+      description: 'Purchase',
+      image: 'https://example.com/your_logo',
+
+      handler: function (response) {
+        alert(response.razorpay_payment_id);
+        setOrders(prevOrder => [
+          ...prevOrder,
+          {
+            orderId: response.razorpay_payment_id,
+            orderedItems: cartState.cart,
+          },
+        ]);
+        cartDispatch({ type: 'CHECKOUT' });
+      },
+      prefill: {
+        name: `${token.user.firstName} ${token.user.lastName}`,
+        email: token.user.email,
+        contact: '9999999999',
+      },
+      theme: {
+        color: '#3399cc',
+      },
+    };
+
+    var rzp1 = new window.Razorpay(options);
+    rzp1.open();
+    e.preventDefault();
+    rzp1.on('payment.failed', function (response) {
+      alert('Something went wrong', response.error.code);
+    });
+  }
+
   return (
     <>
       {cartState.cart.length === 0 ? (
@@ -24,7 +86,14 @@ function CartSummary() {
             <p>Total Amount</p>
             <p>₹ {499 + getTotalPrice(cartState.cart)}</p>
           </div>
-          <button className="btn primary-btn">Place Order</button>
+          <button
+            className="btn primary-btn"
+            onClick={() => {
+              payHandler();
+            }}
+          >
+            Place Order
+          </button>
         </div>
       )}
     </>

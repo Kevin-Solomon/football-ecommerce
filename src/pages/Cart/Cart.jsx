@@ -6,7 +6,6 @@ import CartSummary from './components/CartSummary/CartSummary';
 import { useCart } from './../../context/cart/cartContext';
 function Cart() {
   const { cartState } = useCart();
-  console.log(cartState.cart);
   return (
     <>
       <Navbar />
