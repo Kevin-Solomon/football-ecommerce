@@ -3,7 +3,6 @@ import { useFilter } from '../../../../context/filter/filterContext';
 
 function RatingFilter() {
   const { filterState, filterDispatch } = useFilter();
-  console.log(filterState.rating);
   return (
     <>
       <div className="filter-rating">

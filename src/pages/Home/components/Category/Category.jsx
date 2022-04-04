@@ -1,41 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import '../../Home.css';
-import {
-  football,
-  footballBoots,
-  realMadrid,
-  sneakers,
-} from '../../../../assets';
+import CategoryCard from './components/CategoryCard';
 function Category() {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    async function getCategory() {
+      const response = await axios({ method: 'GET', url: '/api/categories' });
+      setCategories([...response.data.categories]);
+    }
+    getCategory();
+  }, []);
+
   return (
     <>
       <h2 className="text-center">Shop By Categories</h2>
       <div className="underline"></div>
       <div className="grid grid-column-4">
-        <div className="grid-category-card">
-          <div className="text-overlay-container">
-            <img className="responsive-img" src={footballBoots} />
-            <p className="text-overlay">Boots</p>
-          </div>
-        </div>
-        <div className="grid-category-card">
-          <div className="text-overlay-container">
-            <img className="responsive-img" src={realMadrid} />
-            <p className="text-overlay">Football Jersey</p>
-          </div>
-        </div>
-        <div className="grid-category-card">
-          <div className="text-overlay-container">
-            <img className="responsive-img" src={sneakers} />
-            <p className="text-overlay">Sneakers</p>
-          </div>
-        </div>
-        <div className="grid-category-card">
-          <div className="text-overlay-container">
-            <img className="responsive-img" src={football} />
-            <p className="text-overlay">Football</p>
-          </div>
-        </div>
+        {categories.map(({ imgSrc, categoryName }) => {
+          return <CategoryCard imgSrc={imgSrc} title={categoryName} />;
+        })}
       </div>
     </>
   );

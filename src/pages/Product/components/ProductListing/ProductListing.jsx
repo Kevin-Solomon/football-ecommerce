@@ -19,11 +19,11 @@ function ProductListing({ search }) {
   const { wishlistState } = useWishlist();
   const wishlistId = wishlistState.map(item => item._id);
   const cartId = cartState.cart.map(item => item._id);
-  console.log(cartId);
   const rangeList = getRangeProducts(filterState, products);
   const categoryList = getCategory(filterState, rangeList);
   const sortedList = getSorted(filterState, categoryList);
   const ratingList = getRatingList(filterState, sortedList);
+
   function getSearchedList(search, ratingList) {
     console.log(ratingList);
     if (search.trim() === '') {
@@ -36,6 +36,7 @@ function ProductListing({ search }) {
   }
   const searchedList = getSearchedList(search, ratingList);
   console.log(searchedList);
+
   return (
     <>
       <main className="products-display">

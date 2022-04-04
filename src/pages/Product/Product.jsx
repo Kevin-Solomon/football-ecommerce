@@ -1,6 +1,6 @@
 import Navbar from '../../components/Navbar/Navbar';
 import { useProducts } from '../../context/product/productContext';
-import { useReducer, useState } from 'react';
+import { useReducer, useState, useEffect } from 'react';
 import Filter from './components/Filter/Filter';
 import ProductListing from './components/ProductListing/ProductListing';
 import './Product.css';
@@ -31,6 +31,7 @@ function Product() {
           <ProductListing search={search} />
         </div>
       </FilterProvider>
+
     </>
   );
 }

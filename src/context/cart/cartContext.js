@@ -8,7 +8,6 @@ function CartProvider({ children }) {
   const [cartState, cartDispatch] = useReducer(cartReducer, initialCartState);
   useEffect(() => {
     async function getCartItems() {
-      console.log(token.token);
       try {
         const response = await axios.get('/api/user/cart', {
           headers: { authorization: token.token },

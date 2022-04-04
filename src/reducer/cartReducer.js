@@ -9,6 +9,7 @@ const DECREASE_QUANTITY = 'DECREASE_QUANTITY';
 const INCREASE_QUANTITY = 'INCREASE_QUANTITY';
 const RESET = 'RESET';
 const INITIALIZE = 'INITIALIZE';
+const CHECKOUT = 'CHECKOUT';
 function cartReducer(state, action) {
   console.log(action.type);
   switch (action.type) {
@@ -28,6 +29,8 @@ function cartReducer(state, action) {
       return { ...state, cart: [] };
     case INITIALIZE:
       return { ...state, cart: [...action.payload] };
+    case CHECKOUT:
+      return { ...state, cart: [] };
     default:
       return { ...state };
   }
