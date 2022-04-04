@@ -132,5 +132,11 @@
   border: 1px solid var(--primary-color);
 }
 .icon-btn {
-  visibility: hidden;
+  /* visibility: hidden; */
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
 }
