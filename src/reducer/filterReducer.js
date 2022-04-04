@@ -17,12 +17,15 @@ const PRICE = 'price';
 const RATING = 'rating';
 const RESET = 'RESET';
 const filterReducer = (state, action) => {
+  console.log(action.type);
   switch (action.type) {
     case HIGH_TO_LOW:
       return { ...state, sortBy: 'HIGH_TO_LOW' };
     case JERSEY:
       return { ...state, jersey: !state.jersey };
     case BOOTS:
+      console.log('in boots');
+      console.log('in boots', { ...state, boots: !state.boots });
       return { ...state, boots: !state.boots };
     case SNEAKERS:
       return { ...state, sneakers: !state.sneakers };

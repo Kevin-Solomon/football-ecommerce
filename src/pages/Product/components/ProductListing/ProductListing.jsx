@@ -17,12 +17,10 @@ function ProductListing() {
   const { wishlistState } = useWishlist();
   const wishlistId = wishlistState.map(item => item._id);
   const cartId = cartState.cart.map(item => item._id);
-  console.log(cartId);
   const rangeList = getRangeProducts(filterState, products);
   const categoryList = getCategory(filterState, rangeList);
   const sortedList = getSorted(filterState, categoryList);
   const ratingList = getRatingList(filterState, sortedList);
-  console.log(ratingList);
   return (
     <>
       <main className="products-display">
