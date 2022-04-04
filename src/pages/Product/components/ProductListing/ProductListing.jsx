@@ -10,7 +10,9 @@ import {
 } from '../../../../util';
 import { useCart } from '../../../../context/cart/cartContext';
 import { useWishlist } from '../../../../context/wishlist/wishlistContext';
-function ProductListing() {
+import { NoItemFound } from '../../../../components/NoItemFound/NoItemFound';
+import { noItem } from '../../../../assets';
+function ProductListing({ search }) {
   const products = useProducts();
   const { filterState } = useFilter();
   const { cartState } = useCart();
@@ -21,55 +23,75 @@ function ProductListing() {
   const categoryList = getCategory(filterState, rangeList);
   const sortedList = getSorted(filterState, categoryList);
   const ratingList = getRatingList(filterState, sortedList);
+
+  function getSearchedList(search, ratingList) {
+    console.log(ratingList);
+    if (search.trim() === '') {
+      return ratingList;
+    } else {
+      return ratingList.filter(item =>
+        item.title.toLowerCase().includes(search)
+      );
+    }
+  }
+  const searchedList = getSearchedList(search, ratingList);
+  console.log(searchedList);
+
   return (
     <>
       <main className="products-display">
-        <h2>Showing All Products (showing {ratingList.length} products)</h2>
+        <h2>Showing All Products (showing {searchedList.length} products)</h2>
         <div className="grid-products">
-          {ratingList.map(({ id, price, title, imgSrc, rating, _id }) => {
-            return cartId.includes(_id) && wishlistId.includes(_id) ? (
-              <Card
-                key={id}
-                id={id}
-                price={price}
-                name={title}
-                imgSrc={imgSrc}
-                _id={_id}
-                rating={rating}
-                inCart
-                inWishlist
-              />
-            ) : cartId.includes(_id) ? (
-              <Card
-                key={id}
-                price={price}
-                name={title}
-                imgSrc={imgSrc}
-                _id={_id}
-                rating={rating}
-                inCart
-              />
-            ) : wishlistId.includes(_id) ? (
-              <Card
-                key={id}
-                price={price}
-                name={title}
-                imgSrc={imgSrc}
-                _id={_id}
-                rating={rating}
-                inWishlist
-              />
-            ) : (
-              <Card
-                key={id}
-                price={price}
-                name={title}
-                imgSrc={imgSrc}
-                _id={_id}
-                rating={rating}
-              />
-            );
-          })}
+          {searchedList.length === 0 ? (
+            <>
+              <p>No items were found</p>
+            </>
+          ) : (
+            searchedList.map(({ id, price, title, imgSrc, rating, _id }) => {
+              return cartId.includes(_id) && wishlistId.includes(_id) ? (
+                <Card
+                  key={id}
+                  id={id}
+                  price={price}
+                  name={title}
+                  imgSrc={imgSrc}
+                  _id={_id}
+                  rating={rating}
+                  inCart
+                  inWishlist
+                />
+              ) : cartId.includes(_id) ? (
+                <Card
+                  key={id}
+                  price={price}
+                  name={title}
+                  imgSrc={imgSrc}
+                  _id={_id}
+                  rating={rating}
+                  inCart
+                />
+              ) : wishlistId.includes(_id) ? (
+                <Card
+                  key={id}
+                  price={price}
+                  name={title}
+                  imgSrc={imgSrc}
+                  _id={_id}
+                  rating={rating}
+                  inWishlist
+                />
+              ) : (
+                <Card
+                  key={id}
+                  price={price}
+                  name={title}
+                  imgSrc={imgSrc}
+                  _id={_id}
+                  rating={rating}
+                />
+              );
+            })
+          )}
         </div>
       </main>
     </>
