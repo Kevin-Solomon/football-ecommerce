@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Card from '../../../../components/Card/Card';
 import { useProducts } from '../../../../context/product/productContext';
 import { useFilter } from '../../../../context/filter/filterContext';
@@ -14,7 +14,7 @@ import { NoItemFound } from '../../../../components/NoItemFound/NoItemFound';
 import { noItem } from '../../../../assets';
 function ProductListing({ search }) {
   const products = useProducts();
-  const { filterState } = useFilter();
+  const { filterState, filterDispatch } = useFilter();
   const { cartState } = useCart();
   const { wishlistState } = useWishlist();
   const wishlistId = wishlistState.map(item => item._id);
@@ -36,7 +36,11 @@ function ProductListing({ search }) {
   }
   const searchedList = getSearchedList(search, ratingList);
   console.log(searchedList);
-
+  useEffect(() => {
+    return () => {
+      filterDispatch({ type: 'RESET' });
+    };
+  }, []);
   return (
     <>
       <main className="products-display">

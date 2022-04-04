@@ -12,8 +12,7 @@ function Product() {
   const [search, setSearch] = useState('');
   return (
     <>
-
-      <Navbar />
+      <Navbar inProductListing setValue={setSearch} value={search} />
       <ToastContainer />
       <button
         onClick={() => {
@@ -30,7 +29,7 @@ function Product() {
       </button>
       <div className="display-container">
         <Filter hidden={hidden} />
-        <ProductListing />
+        <ProductListing search={search} />
       </div>
     </>
   );
