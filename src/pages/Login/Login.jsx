@@ -5,7 +5,10 @@ import './Login.css';
 import { useAuth } from '../../context/auth/authContext';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import { useToast } from './../../context/toast/toastContext';
+import { v4 as uuid } from 'uuid';
 function Login() {
+  const { toastDispatch } = useToast();
   const [user, setUser] = useState({
     email: '',
     password: '',
@@ -22,7 +25,14 @@ function Login() {
         '/api/auth/login',
         JSON.stringify({ email, password })
       );
-      console.log(response.data);
+      toastDispatch({
+        type: 'ADD_TOAST',
+        payload: {
+          _id: uuid(),
+          message: `Welcome back, ${response.data.foundUser.firstName}  `,
+          autoDelete: 3000,
+        },
+      });
       setToken({
         token: response.data.encodedToken,
         user: response.data.foundUser,
@@ -30,12 +40,20 @@ function Login() {
       navigate('/');
     } catch (err) {
       setError(true);
+      toastDispatch({
+        type: 'ADD_TOAST',
+        payload: {
+          _id: uuid(),
+          message: `Something went wrong in the login process`,
+          autoDelete: 3000,
+          theme: 'danger',
+        },
+      });
     }
   }
   return (
     <>
       <Navbar inLogin />
-      {error && 'ERROR'}
       <div className="login-container">
         <div className="login-card">
           <h2>Login</h2>

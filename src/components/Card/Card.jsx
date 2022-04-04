@@ -4,6 +4,8 @@ import { useWishlist } from '../../context/wishlist/wishlistContext';
 import { useAuth } from '../../context/auth/authContext';
 import { useCart } from './../../context/cart/cartContext';
 import { useState } from 'react';
+import { useToast } from '../../context/toast/toastContext';
+import { v4 as uuid } from 'uuid';
 export default function Card({
   _id,
   id,
@@ -19,6 +21,7 @@ export default function Card({
   const { token } = useAuth();
   const { addToCart } = useCart();
   const [disabled, setDisabled] = useState(false);
+  const { toastDispatch } = useToast();
   return (
     <div className="product-card">
       <div className="card-image-container">
@@ -27,7 +30,7 @@ export default function Card({
           <button
             className="icon-btn"
             onClick={() => {
-              deleteFromWishlist(_id);
+              deleteFromWishlist(_id, name);
             }}
           >
             <i className="fa fa-heart" aria-hidden="true"></i>

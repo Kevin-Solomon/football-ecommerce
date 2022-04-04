@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { manchesterUnited } from '../../assets';
 import { useCart } from '../../context/cart/cartContext';
+import { useToast } from '../../context/toast/toastContext';
 import './Card.css';
 function LandscapeCard({ _id, price, name, qty, imgSrc }) {
   const { removeFromCart, decreaseQuantity, increaseQuantity } = useCart();
   const [disabled, setDisabled] = useState(false);
+  const { toastState, toastDispatch } = useToast();
+  console.log(toastState);
   return (
     <>
       <div className="card-landscape">
@@ -28,7 +30,7 @@ function LandscapeCard({ _id, price, name, qty, imgSrc }) {
               className="decrease-btn"
               onClick={() => {
                 setDisabled(true);
-                decreaseQuantity(_id, qty, setDisabled);
+                decreaseQuantity(_id, qty, setDisabled, name);
               }}
             >
               -
@@ -36,7 +38,9 @@ function LandscapeCard({ _id, price, name, qty, imgSrc }) {
           </div>
           <button
             className="btn primary-btn"
-            onClick={() => removeFromCart(_id)}
+            onClick={() => {
+              removeFromCart(_id, name);
+            }}
           >
             Remove from Cart
           </button>
