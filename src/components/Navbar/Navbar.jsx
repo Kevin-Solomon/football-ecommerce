@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/auth/authContext';
 import { useWishlist } from './../../context/wishlist/wishlistContext';
 import { useCart } from './../../context/cart/cartContext';
-function Navbar({ inLogin }) {
+function Navbar({ inLogin, inProductListing, value, setValue }) {
   const { token, setToken } = useAuth();
   const { wishlistState, wishlistDispatch } = useWishlist();
   const { cartState, cartDispatch } = useCart();
@@ -17,13 +17,17 @@ function Navbar({ inLogin }) {
           </h2>
         </div>
 
-        <form className="form">
-          <input
-            type="text"
-            className="form-input small-text"
-            placeholder="Enter Product"
-          />
-        </form>
+        {inProductListing ? (
+          <form className="form">
+            <input
+              type="text"
+              value={value}
+              onChange={e => setValue(e.target.value)}
+              className="form-input small-text"
+              placeholder="Enter Product"
+            />
+          </form>
+        ) : null}
 
         <div className="right-nav">
           {token.token === null ? (
