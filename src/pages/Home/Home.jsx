@@ -4,12 +4,13 @@ import Navbar from '../../components/Navbar/Navbar';
 import Category from './components/Category/Category';
 import Hero from './components/Hero/Hero';
 import Trending from './components/Trending/Trending';
-
+import ToastContainer from '../../components/Toast/ToastContainer';
 function Home() {
   return (
     <>
       <div className="body-center">
         <Navbar />
+        <ToastContainer />
         <Hero />
         <Category />
         <Trending />

@@ -6,7 +6,10 @@ import './Signup.css';
 import axios from 'axios';
 import { useAuth } from '../../context/auth/authContext';
 import { useNavigate, Link } from 'react-router-dom';
+import { useToast } from '../../context/toast/toastContext';
+import { v4 as uuid } from 'uuid';
 function Signup() {
+  const { toastDispatch } = useToast();
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -23,21 +26,39 @@ function Signup() {
       };
     });
   };
-  const signupHandler = async (e, { email, password }) => {
+  const signupHandler = async (e, { email, password, name }) => {
     e.preventDefault();
     try {
       const response = await axios.post('/api/auth/signup', {
         email,
         password,
+        name,
       });
       console.log(response);
       setToken({
         token: response.data.encodedToken,
         user: response.data.createdUser,
       });
+      toastDispatch({
+        type: 'ADD_TOAST',
+        payload: {
+          _id: uuid(),
+          message: `${response.data.createdUser.name} you have successfully Signed Up `,
+          autoDelete: 3000,
+        },
+      });
       navigate('/');
     } catch (err) {
       console.error('error', err);
+      toastDispatch({
+        type: 'ADD_TOAST',
+        payload: {
+          _id: uuid(),
+          message: `Something went wrong in the sign up process `,
+          autoDelete: 3000,
+          theme: 'danger',
+        },
+      });
     }
   };
   return (
