@@ -29,12 +29,13 @@ export default function Card({
         <img className="responsive-img" src={imgSrc} alt="pht" />
         {inWishlist ? (
           <button
+            style={{ color: 'red' }}
             className="icon-btn"
             onClick={() => {
               deleteFromWishlist(_id, name);
             }}
           >
-            <i className="fa fa-heart" aria-hidden="true"></i>
+            {getIcons('FILLED_WISHLIST', '15px')}
           </button>
         ) : (
           <button
