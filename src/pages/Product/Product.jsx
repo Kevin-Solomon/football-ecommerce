@@ -6,7 +6,7 @@ import ProductListing from './components/ProductListing/ProductListing';
 import './Product.css';
 import { FilterProvider, useFilter } from '../../context/filter/filterContext';
 import ToastContainer from '../../components/Toast/ToastContainer';
-
+import { getIcons } from './../../util/getIcons';
 function Product() {
   const [hidden, setHidden] = useState(true);
   const [search, setSearch] = useState('');
@@ -21,11 +21,7 @@ function Product() {
         className="filter-btn"
       >
         Filters
-        {hidden ? (
-          <i class="fas fa-arrow-down"></i>
-        ) : (
-          <i class="fas fa-arrow-up"></i>
-        )}
+        {hidden ? getIcons('FILTER', '20px') : <i class="fas fa-arrow-up"></i>}
       </button>
       <div className="display-container">
         <Filter hidden={hidden} />

@@ -6,6 +6,7 @@ import { useCart } from './../../context/cart/cartContext';
 import { useState } from 'react';
 import { useToast } from '../../context/toast/toastContext';
 import { v4 as uuid } from 'uuid';
+import { getIcons } from '../../util/getIcons';
 export default function Card({
   _id,
   id,
@@ -28,12 +29,13 @@ export default function Card({
         <img className="responsive-img" src={imgSrc} alt="pht" />
         {inWishlist ? (
           <button
+            style={{ color: 'red' }}
             className="icon-btn"
             onClick={() => {
               deleteFromWishlist(_id, name);
             }}
           >
-            <i className="fa fa-heart" aria-hidden="true"></i>
+            {getIcons('FILLED_WISHLIST', '15px')}
           </button>
         ) : (
           <button
@@ -48,7 +50,7 @@ export default function Card({
               );
             }}
           >
-            <i className="far fa-heart"></i>
+            {getIcons('OUTLINE_WISHLIST', '15px')}
           </button>
         )}
       </div>

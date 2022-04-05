@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/auth/authContext';
 import { useWishlist } from './../../context/wishlist/wishlistContext';
 import { useCart } from './../../context/cart/cartContext';
+import { getIcons } from '../../util/getIcons';
 function Navbar({ inLogin, inProductListing, value, setValue }) {
   const { token, setToken } = useAuth();
   const { wishlistState, wishlistDispatch } = useWishlist();
@@ -55,7 +56,8 @@ function Navbar({ inLogin, inProductListing, value, setValue }) {
             <li>
               <div className="badge">
                 <Link to="/wishlist">
-                  <i className="fas fa-heart fa-2x"></i>
+                  {getIcons('FILLED_WISHLIST', '27px')}
+
                   <div className="badge-number">
                     {token.token ? wishlistState.length : 0}
                   </div>
@@ -65,7 +67,7 @@ function Navbar({ inLogin, inProductListing, value, setValue }) {
             <li>
               <Link to="/cart">
                 <div className="badge">
-                  <i className="fas fa-shopping-cart fa-2x"></i>
+                  {getIcons('CART_ICON', '27px')}
                   <div className="badge-number">
                     {token.token ? cartState.cart.length : 0}
                   </div>

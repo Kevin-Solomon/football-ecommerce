@@ -58,7 +58,7 @@
     padding-top: 2.5rem;
   }
   .filter-btn {
-    display: block;
+    display: flex;
     position: sticky;
     top: 10px;
     z-index: 3;
@@ -68,6 +68,7 @@
     padding: 10px;
     color: var(--white-color);
     border: none;
+    gap: 5px;
   }
   .show {
     display: block;
