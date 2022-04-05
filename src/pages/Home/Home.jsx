@@ -14,7 +14,6 @@ function Home() {
         <Hero />
         <Category />
         <Trending />
-        debugger
       </div>
       <Footer />
     </>
