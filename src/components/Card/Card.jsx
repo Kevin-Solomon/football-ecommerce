@@ -59,7 +59,7 @@ export default function Card({
       <div className="card-rating">
         <div className="read-only-rating">
           <span className="small-text">{rating}</span>
-          <i className="far fa-star"></i>
+          {getIcons('STAR', '30px')}
         </div>
       </div>
       <div className="card-footer-btn">

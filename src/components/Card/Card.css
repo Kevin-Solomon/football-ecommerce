@@ -124,7 +124,10 @@
   display: flex;
   width: 100%;
 }
-
+.read-only-rating {
+  display: flex;
+  align-items: center;
+}
 .card-footer-btn > * {
   flex-basis: 50%;
 }

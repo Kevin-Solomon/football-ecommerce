@@ -8,6 +8,7 @@ import {
   getCategory,
   getRangeProducts,
 } from '../../../../util';
+import LoadingContainer from '../../../../components/Loading/LoadingContainer';
 import { useCart } from '../../../../context/cart/cartContext';
 import { useWishlist } from '../../../../context/wishlist/wishlistContext';
 import { NoItemFound } from '../../../../components/NoItemFound/NoItemFound';
@@ -46,6 +47,7 @@ function ProductListing({ search }) {
       <main className="products-display">
         <h2>Showing All Products (showing {searchedList.length} products)</h2>
         <div className="grid-products">
+          {products.length === 0 ? <LoadingContainer type="product" /> : null}
           {searchedList.length === 0 ? (
             <>
               <p>No items were found</p>

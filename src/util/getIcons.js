@@ -1,7 +1,7 @@
 import { FaShoppingCart, FaHeart, FaRegHeart } from 'react-icons/fa';
 import { BsFilter } from 'react-icons/bs';
 import { AiOutlineClear } from 'react-icons/ai';
-
+import { AiFillStar } from 'react-icons/ai';
 export const getIcons = (type, payload) => {
   switch (type) {
     case 'CART_ICON':
@@ -14,6 +14,8 @@ export const getIcons = (type, payload) => {
       return <AiOutlineClear style={{ fontSize: payload }} />;
     case 'FILTER':
       return <BsFilter style={{ fontSize: payload }} />;
+    case 'STAR':
+      return <AiFillStar style={{ fontSize: payload }} />;
     default:
       return null;
   }
