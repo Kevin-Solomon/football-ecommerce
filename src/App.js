@@ -9,6 +9,7 @@ import SingleProductPage from './pages/SingleProductPage/SingleProductPage';
 import Product from './pages/Product/Product';
 import Cart from './pages/Cart/Cart';
 import Mockman from 'mockman-js';
+import NotFound from './pages/NotFound/NotFound';
 function App() {
   return (
     <Routes>
@@ -19,6 +20,7 @@ function App() {
       <Route path="/product/:productId" element={<SingleProductPage />} />
       <Route path="/product" element={<Product />} />
       <Route path="/cart" element={<Cart />} />
+      <Route path="*" element={<NotFound />} />
       <Route path="/mockman" element={<Mockman />} />
     </Routes>
   );
