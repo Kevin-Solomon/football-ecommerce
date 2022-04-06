@@ -3,10 +3,13 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import '../../SingleProductPage.css';
 import axios from 'axios';
-
+import { useCart } from './../../../../context/cart/cartContext';
 function ProductContainer() {
+  const { addToCart } = useCart();
+  const [disabled, setDisabled] = useState(false);
   const params = useParams();
   const [data, setData] = useState({ imgSrc: '', title: '', price: '' });
+  console.log(data);
   useEffect(() => {
     async function getProducts() {
       try {
@@ -80,7 +83,25 @@ function ProductContainer() {
                   : 'US XL'}
               </label>
             </div>
-            <button className="btn outline-primary">Add to Cart</button>
+            <button
+              className="btn outline-primary"
+              disabled={disabled}
+              onClick={e => {
+                e.preventDefault();
+                addToCart(
+                  {
+                    _id: data._id,
+                    name: data.title,
+                    price: data.price,
+                    imgSrc: data.imgSrc,
+                  },
+                  data._id,
+                  setDisabled
+                );
+              }}
+            >
+              Add to Cart
+            </button>
           </form>
           <div className="product-detail-content">
             <h2 className="product-detail-header">{data.title}</h2>
