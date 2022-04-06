@@ -9,7 +9,6 @@ function ProductContainer() {
   const [disabled, setDisabled] = useState(false);
   const params = useParams();
   const [data, setData] = useState({ imgSrc: '', title: '', price: '' });
-  console.log(data);
   useEffect(() => {
     async function getProducts() {
       try {
