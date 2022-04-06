@@ -1,0 +1,11 @@
+.not-found {
+  width: 100vw;
+  height: calc(100vh - 300px);
+  object-fit: contain;
+}
+.btn-wrapper {
+  text-align: center;
+}
+.not-found-header {
+  margin: 1rem;
+}
