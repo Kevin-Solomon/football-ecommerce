@@ -1,0 +1,22 @@
+.skeletal {
+  animation: skeletal-loading 1s linear infinite alternate;
+}
+.skeletal-image {
+  width: 100%;
+}
+.skeletal-text,
+.skeletal-price {
+  width: 50%;
+  height: 1rem;
+}
+.text-overlay-container {
+  width: 15rem;
+}
+@keyframes skeletal-loading {
+  0% {
+    background-color: hsl(200, 20%, 70%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
