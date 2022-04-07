@@ -22,6 +22,7 @@ function Cart() {
                   name={item.name}
                   qty={item.qty}
                   imgSrc={item.imgSrc}
+                  rating={item.rating}
                 />
               );
             })}

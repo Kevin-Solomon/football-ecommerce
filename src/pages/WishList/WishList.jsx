@@ -7,6 +7,7 @@ import { useWishlist } from '../../context/wishlist/wishlistContext';
 import ToastContainer from '../../components/Toast/ToastContainer';
 function WishList() {
   const { wishlistState } = useWishlist();
+  console.log(wishlistState);
   return (
     <>
       <Navbar />

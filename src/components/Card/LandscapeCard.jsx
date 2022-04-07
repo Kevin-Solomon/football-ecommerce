@@ -3,11 +3,12 @@ import { useAuth } from '../../context/auth/authContext';
 import { useCart } from '../../context/cart/cartContext';
 import { useWishlist } from './../../context/wishlist/wishlistContext';
 import './Card.css';
-function LandscapeCard({ _id, price, name, qty, imgSrc }) {
+function LandscapeCard({ _id, price, name, qty, imgSrc, rating }) {
   const { removeFromCart, decreaseQuantity, increaseQuantity } = useCart();
   const [disabled, setDisabled] = useState(false);
   const { addToWishlist } = useWishlist();
   const { token } = useAuth();
+  console.log(rating);
   return (
     <>
       <div className="card-landscape">
@@ -49,7 +50,7 @@ function LandscapeCard({ _id, price, name, qty, imgSrc }) {
             className="btn outline-primary"
             onClick={() => {
               addToWishlist(
-                { _id, name, price, imgSrc },
+                { _id, name, price, imgSrc, rating },
                 token.token,
                 setDisabled
               );
