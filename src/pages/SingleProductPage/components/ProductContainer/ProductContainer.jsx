@@ -1,12 +1,17 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import '../../SingleProductPage.css';
 import axios from 'axios';
-
+import { useCart } from './../../../../context/cart/cartContext';
 function ProductContainer() {
+  const { cartState, addToCart } = useCart();
+  const cartId = cartState.cart.map(({ _id }) => _id);
+  let inCart = false;
+  const [disabled, setDisabled] = useState(false);
   const params = useParams();
   const [data, setData] = useState({ imgSrc: '', title: '', price: '' });
+
   useEffect(() => {
     async function getProducts() {
       try {
@@ -21,6 +26,9 @@ function ProductContainer() {
     }
     getProducts();
   }, []);
+  if (cartId.includes(params.productId)) {
+    inCart = true;
+  }
   return (
     <>
       <section className="single-product-container">
@@ -80,7 +88,31 @@ function ProductContainer() {
                   : 'US XL'}
               </label>
             </div>
-            <button className="btn outline-primary">Add to Cart</button>
+            {inCart ? (
+              <Link to="/cart">
+                <button className="btn outline-primary">Go to Cart</button>
+              </Link>
+            ) : (
+              <button
+                className="btn outline-primary"
+                disabled={disabled}
+                onClick={e => {
+                  e.preventDefault();
+                  addToCart(
+                    {
+                      _id: data._id,
+                      name: data.title,
+                      price: data.price,
+                      imgSrc: data.imgSrc,
+                    },
+                    data._id,
+                    setDisabled
+                  );
+                }}
+              >
+                Add to Cart
+              </button>
+            )}
           </form>
           <div className="product-detail-content">
             <h2 className="product-detail-header">{data.title}</h2>

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useAuth } from '../../context/auth/authContext';
 import { useCart } from '../../context/cart/cartContext';
-import { useToast } from '../../context/toast/toastContext';
+import { useWishlist } from './../../context/wishlist/wishlistContext';
 import './Card.css';
-function LandscapeCard({ _id, price, name, qty, imgSrc }) {
+function LandscapeCard({ _id, price, name, qty, imgSrc, rating }) {
   const { removeFromCart, decreaseQuantity, increaseQuantity } = useCart();
   const [disabled, setDisabled] = useState(false);
-  const { toastState, toastDispatch } = useToast();
-  console.log(toastState);
+  const { addToWishlist } = useWishlist();
+  const { token } = useAuth();
+  console.log(rating);
   return (
     <>
       <div className="card-landscape">
@@ -44,7 +46,19 @@ function LandscapeCard({ _id, price, name, qty, imgSrc }) {
           >
             Remove from Cart
           </button>
-          <button className="btn outline-primary">Move To Wishlist</button>
+          <button
+            className="btn outline-primary"
+            onClick={() => {
+              addToWishlist(
+                { _id, name, price, imgSrc, rating },
+                token.token,
+                setDisabled
+              );
+              removeFromCart(_id, name);
+            }}
+          >
+            Move To Wishlist
+          </button>
         </div>
       </div>
     </>
