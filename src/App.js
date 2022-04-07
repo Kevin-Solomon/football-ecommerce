@@ -10,16 +10,31 @@ import Product from './pages/Product/Product';
 import Cart from './pages/Cart/Cart';
 import Mockman from 'mockman-js';
 import NotFound from './pages/NotFound/NotFound';
+import RequireAuth from './components/RequireAuth/RequireAuth';
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/wishlist" element={<WishList />} />
+      <Route
+        path="/wishlist"
+        element={
+          <RequireAuth>
+            <WishList />
+          </RequireAuth>
+        }
+      />
       <Route path="/product/:productId" element={<SingleProductPage />} />
       <Route path="/product" element={<Product />} />
-      <Route path="/cart" element={<Cart />} />
+      <Route
+        path="/cart"
+        element={
+          <RequireAuth>
+            <Cart />
+          </RequireAuth>
+        }
+      />
       <Route path="*" element={<NotFound />} />
       <Route path="/mockman" element={<Mockman />} />
     </Routes>

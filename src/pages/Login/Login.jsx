@@ -7,6 +7,7 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { useToast } from './../../context/toast/toastContext';
 import { v4 as uuid } from 'uuid';
+import { useLocation } from 'react-router-dom';
 function Login() {
   const { toastDispatch } = useToast();
   const [user, setUser] = useState({
@@ -14,6 +15,8 @@ function Login() {
     password: '',
     rememberMe: false,
   });
+  const location = useLocation();
+  console.log(location);
   const [hidden, setHidden] = useState(false);
   const [error, setError] = useState(false);
   const { setToken } = useAuth();
@@ -37,7 +40,7 @@ function Login() {
         token: response.data.encodedToken,
         user: response.data.foundUser,
       });
-      navigate('/');
+      navigate(`${location?.state?.prevPath}`, { replace: true });
     } catch (err) {
       setError(true);
       toastDispatch({
