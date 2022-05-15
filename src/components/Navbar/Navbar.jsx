@@ -74,6 +74,9 @@ function Navbar({ inLogin, inProductListing, value, setValue }) {
                 </div>
               </Link>
             </li>
+            <li>
+              <Link to="/order">{getIcons('ORDER', '27px')}</Link>
+            </li>
           </ul>
         </div>
         <button className="navbar-btn">

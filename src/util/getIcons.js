@@ -1,4 +1,4 @@
-import { FaShoppingCart, FaHeart, FaRegHeart } from 'react-icons/fa';
+import { FaShoppingCart, FaHeart, FaRegHeart, FaBox } from 'react-icons/fa';
 import { BsFilter } from 'react-icons/bs';
 import { AiOutlineClear } from 'react-icons/ai';
 import { AiFillStar } from 'react-icons/ai';
@@ -14,6 +14,8 @@ export const getIcons = (type, payload) => {
       return <AiOutlineClear style={{ fontSize: payload }} />;
     case 'FILTER':
       return <BsFilter style={{ fontSize: payload }} />;
+    case 'ORDER':
+      return <FaBox style={{ fontSize: payload }} />;
     case 'STAR':
       return <AiFillStar style={{ fontSize: payload }} />;
     default:

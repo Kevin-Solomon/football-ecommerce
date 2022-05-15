@@ -11,7 +11,7 @@ const RESET = 'RESET';
 const INITIALIZE = 'INITIALIZE';
 const CHECKOUT = 'CHECKOUT';
 function cartReducer(state, action) {
-  console.log(action.type);
+  console.log(state);
   switch (action.type) {
     case ADD_TO_CART:
       return { ...state, cart: [...action.payload] };
