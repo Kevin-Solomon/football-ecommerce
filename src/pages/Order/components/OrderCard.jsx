@@ -16,7 +16,11 @@ function OrderCard({ order }) {
       <div>
         {order.orderedItems.map(items => {
           return (
-            <img className="responsive-img order-card-img" src={items.imgSrc} />
+            <img
+              style={{ margin: '0 5px' }}
+              className="responsive-img order-card-img"
+              src={items.imgSrc}
+            />
           );
         })}
       </div>
@@ -26,7 +30,7 @@ function OrderCard({ order }) {
           {[...new Array(5)].map((item, index) => {
             return (
               <>
-                <label style={{ color: index < value ? 'red' : '' }}>
+                <label style={{ color: index < value ? 'red' : '#c5c5c5' }}>
                   <input
                     value={index + 1}
                     onClick={e => {

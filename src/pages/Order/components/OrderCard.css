@@ -7,9 +7,9 @@
   width: 400px;
 }
 .order-card-img {
-  height: 100px;
+  height: 90px;
   border-radius: 50%;
-  width: 100px;
+  width: 90px;
   object-fit: cover;
 }
 .order-card-footer {
