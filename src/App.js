@@ -38,7 +38,14 @@ function App() {
       />
       <Route path="*" element={<NotFound />} />
       <Route path="/mockman" element={<Mockman />} />
-      <Route path="/order" element={<Order />} />
+      <Route
+        path="/order"
+        element={
+          <RequireAuth>
+            <Order />
+          </RequireAuth>
+        }
+      />
     </Routes>
   );
 }
