@@ -1,0 +1,23 @@
+.order-card {
+  height: 320px;
+  border: 1px solid var(--lynx-grey);
+  padding: 20px;
+  margin: 20px;
+  border-radius: 5px;
+  width: 400px;
+}
+.order-card-img {
+  height: 100px;
+  border-radius: 50%;
+  width: 100px;
+  object-fit: cover;
+}
+.order-card-footer {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  gap: 2rem;
+}
+.order-card input {
+  display: none;
+}

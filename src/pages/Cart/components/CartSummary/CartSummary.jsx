@@ -47,6 +47,7 @@ function CartSummary() {
             {
               orderId: response.razorpay_payment_id,
               orderedItems: cartState.cart,
+              timestamp: `${new Date().toDateString()} ${new Date().toLocaleTimeString()}`,
             },
           ];
         });
