@@ -6,7 +6,9 @@ import Razorpay from 'razorpay';
 import { useAuth } from '../../../../context/auth/authContext';
 import { useOrder } from '../../../../context/order/orderContext';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 function CartSummary() {
+  const navigate = useNavigate();
   const { token } = useAuth();
   const { orders, setOrders } = useOrder();
   const { cartState, cartDispatch } = useCart();
@@ -67,6 +69,7 @@ function CartSummary() {
         }
         removeAllItems();
         cartDispatch({ type: 'CHECKOUT' });
+        navigate('/order');
       },
       prefill: {
         name: `${token.user.firstName} ${token.user.lastName}`,
