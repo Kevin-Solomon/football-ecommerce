@@ -40,7 +40,7 @@ function Login() {
         token: response.data.encodedToken,
         user: response.data.foundUser,
       });
-      navigate(`${location?.state?.prevPath}`, { replace: true });
+      navigate(`${location?.state?.prevPath || '/'}`, { replace: true });
     } catch (err) {
       setError(true);
       toastDispatch({

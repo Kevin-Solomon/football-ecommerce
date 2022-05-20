@@ -11,6 +11,7 @@ import Cart from './pages/Cart/Cart';
 import Mockman from 'mockman-js';
 import NotFound from './pages/NotFound/NotFound';
 import RequireAuth from './components/RequireAuth/RequireAuth';
+import Order from './pages/Order/Order';
 function App() {
   return (
     <Routes>
@@ -37,6 +38,14 @@ function App() {
       />
       <Route path="*" element={<NotFound />} />
       <Route path="/mockman" element={<Mockman />} />
+      <Route
+        path="/order"
+        element={
+          <RequireAuth>
+            <Order />
+          </RequireAuth>
+        }
+      />
     </Routes>
   );
 }

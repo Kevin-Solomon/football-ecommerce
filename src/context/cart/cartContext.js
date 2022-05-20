@@ -62,6 +62,7 @@ function CartProvider({ children }) {
           }
         );
         setDisabled(false);
+        console.log(response);
         cartDispatch({ type: 'ADD_TO_CART', payload: response.data.cart });
         toastDispatch({
           type: 'ADD_TOAST',

@@ -5,10 +5,14 @@ import { NoItemFound } from './../../../../components/NoItemFound/NoItemFound';
 import Razorpay from 'razorpay';
 import { useAuth } from '../../../../context/auth/authContext';
 import { useOrder } from '../../../../context/order/orderContext';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 function CartSummary() {
+  const navigate = useNavigate();
   const { token } = useAuth();
   const { orders, setOrders } = useOrder();
   const { cartState, cartDispatch } = useCart();
+  console.log(cartState);
   async function loadSdk() {
     return new Promise(resolve => {
       const script = document.createElement('script');
@@ -39,14 +43,33 @@ function CartSummary() {
 
       handler: function (response) {
         alert(response.razorpay_payment_id);
-        setOrders(prevOrder => [
-          ...prevOrder,
-          {
-            orderId: response.razorpay_payment_id,
-            orderedItems: cartState.cart,
-          },
-        ]);
+        setOrders(prevOrder => {
+          return [
+            ...prevOrder,
+            {
+              orderId: response.razorpay_payment_id,
+              orderedItems: cartState.cart,
+              timestamp: `${new Date().toDateString()} ${new Date().toLocaleTimeString()}`,
+            },
+          ];
+        });
+        async function removeAllItems() {
+          try {
+            console.log('in cart remove');
+            const response = await axios({
+              method: 'POST',
+              url: '/api/user/remove/cart',
+              headers: { authorization: token.token },
+            });
+            console.log(response);
+          } catch (err) {
+            console.log('in cart remove,dasda');
+            console.error(err.response);
+          }
+        }
+        removeAllItems();
         cartDispatch({ type: 'CHECKOUT' });
+        navigate('/order');
       },
       prefill: {
         name: `${token.user.firstName} ${token.user.lastName}`,
